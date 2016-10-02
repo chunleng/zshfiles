@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.rc/oh-my-zsh
+export ZSH=$HOME/.base/install/oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -44,18 +44,19 @@ ZSH_THEME="gitsome"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=~/.rc/zsh_custom
+ZSH_CUSTOM=~/.base/install/zsh_custom
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(zsh-autosuggestions bgnotify autojump git taskwarrior brew-cask brew pip vi-mode zsh-syntax-highlighting k knife)
-. ~/.rc/zsh_custom/plugins/zsh-bd/bd.zsh
+. ~/.base/install/zsh_custom/plugins/zsh-bd/bd.zsh
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:${HOME}/.base/install/homebrew/Cellar/coreutils/`ls -1t ${HOME/.base/install/homebrew/Cellar/coreutils`/libexec/gnubin:$PATH
+exportPATH=":$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -95,11 +96,9 @@ export CLICOLOR=1
 export TERM=xterm-256color
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export GOPATH=${HOME}/.rc/go
 BASE16_SHELL="$HOME/.base16rc"
 [[ -s $BASE16_SHELL  ]] && source $BASE16_SHELL && echo done
 
-PATH="/usr/local/Cellar/coreutils/`ls /usr/local/Cellar/coreutils/`/libexec/gnubin:${HOME}/.rc/go/bin:$PATH"
 
 export EDITOR=nvim
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250"
@@ -148,7 +147,6 @@ alias htop="sudo htop"
 alias gitl=gitlog
 alias gitg=gitgrep
 alias lg="k -ah"
-alias ls="ls --color=auto"
 alias vim="nvim -i NONE"
 alias aws="ssh -i ~/.ssh/aws_ec2.pem ec2-user@ec2-54-169-111-130.ap-southeast-1.compute.amazonaws.com"
 
