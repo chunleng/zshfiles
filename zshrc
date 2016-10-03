@@ -55,8 +55,8 @@ plugins=(zsh-autosuggestions bgnotify autojump git taskwarrior brew-cask brew pi
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:${HOME}/.base/install/homebrew/Cellar/coreutils/`ls -1t ${HOME/.base/install/homebrew/Cellar/coreutils`/libexec/gnubin:$PATH
-exportPATH=":$PATH"
+export PATH=${HOME}/.base/install/homebrew/Cellar/coreutils/`ls -1t ${HOME}/.base/install/homebrew/Cellar/coreutils`/libexec/gnubin:${HOME}/.base/install/homebrew/bin:/usr/local/bin:${PATH}
+# export PATH=":$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
