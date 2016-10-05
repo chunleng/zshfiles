@@ -44,14 +44,14 @@ ZSH_THEME="gitsome"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=~/.base/install/zsh_custom
+ZSH_CUSTOM=~/.zsh_custom
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(zsh-autosuggestions bgnotify autojump git taskwarrior brew-cask brew pip vi-mode zsh-syntax-highlighting k knife)
-. ~/.base/install/zsh_custom/plugins/zsh-bd/bd.zsh
+. ~/.zsh_custom/plugins/zsh-bd/bd.zsh
 
 # User configuration
 
@@ -107,7 +107,7 @@ custom-next(){
     if [ -z "$POSTDISPLAY" ]; then
         zle .history-search-forward
     else
-        zle autosuggest-execute
+        zle autosuggest-accept
     fi
 }
 custom-prev(){
@@ -148,7 +148,6 @@ alias gitl=gitlog
 alias gitg=gitgrep
 alias lg="k -ah"
 alias vim="nvim -i NONE"
-alias aws="ssh -i ~/.ssh/aws_ec2.pem ec2-user@ec2-54-169-111-130.ap-southeast-1.compute.amazonaws.com"
 
 test -f ~/.zshrc_local && source ~/.zshrc_local
 
