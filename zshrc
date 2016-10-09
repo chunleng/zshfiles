@@ -96,7 +96,7 @@ source $ZSH/oh-my-zsh.sh
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export TERM=screen-256color
-export BASE16_SHELL=$HOME/.base/install/zshfiles/base16-shell/
+export BASE16_SHELL=$HOME/.config/base16-shell
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 export EDITOR=nvim
