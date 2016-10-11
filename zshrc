@@ -105,11 +105,7 @@ export EDITOR=nvim
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250"
 
 custom-next(){
-    if [ -z "$POSTDISPLAY" ]; then
-        zle .history-search-forward
-    else
-        zle autosuggest-accept
-    fi
+    zle .history-search-forward
 }
 custom-prev(){
     zle .history-search-backward
@@ -120,7 +116,7 @@ zle -N custom-prev
 
 bindkey '^N' custom-next
 bindkey '^P' custom-prev
-
+bindkey '^ ' autosuggest-execute
 
 
 ##############
