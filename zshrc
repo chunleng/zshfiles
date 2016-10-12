@@ -50,7 +50,7 @@ ZSH_CUSTOM=~/.zsh_custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions bgnotify autojump git taskwarrior brew-cask brew pip vi-mode zsh-syntax-highlighting k knife)
+plugins=(zsh-autosuggestions bgnotify autojump git brew-cask brew pip vi-mode zsh-syntax-highlighting k)
 . ~/.zsh_custom/plugins/zsh-bd/bd.zsh
 
 # User configuration
