@@ -118,31 +118,10 @@ bindkey '^N' custom-next
 bindkey '^P' custom-prev
 bindkey '^ ' autosuggest-execute
 
-
-##############
-#  Function  #
-##############
-gitlog(){
-    git log --graph --date=short --decorate=short --pretty=format:'\''%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'\'""
-}
-
-gitgrep(){
-    local term=$1
-    local file=$2
-
-    # if [ "$term" == "" ]; then
-    #     echo "usage: gitgrep term [file]"
-    # fi
-    
-    git grep "$term"  $(git rev-list --all) -- $file
-}
-
 ###########
 #  Alias  #
 ###########
 alias htop="sudo htop"
-alias gitl=gitlog
-alias gitg=gitgrep
 alias lg="k -ah"
 alias vim="nvim -i NONE"
 
