@@ -55,9 +55,11 @@ plugins=(zsh-autosuggestions bgnotify autojump git brew-cask brew pip vi-mode zs
 
 # User configuration
 
-export PATH=${HOME}/.base/install/homebrew/Cellar/coreutils/`ls -1t ${HOME}/.base/install/homebrew/Cellar/coreutils`/libexec/gnubin:${HOME}/.base/install/homebrew/bin:/usr/local/bin:${PATH}
+export PATH=${HOME}/.base/install/homebrew/Cellar/coreutils/`ls -1t ${HOME}/.base/install/homebrew/Cellar/coreutils | head -1`/libexec/gnubin:${HOME}/.base/install/homebrew/bin:/usr/local/bin:${HOME}/.base/install/rundeck/server/sbin/:${HOME}/.base/install/rundeck/tools/bin:${PATH}
 # export PATH=":$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
+
+export RDECK_BASE=${HOME}/.base/install/rundeck
 
 source $ZSH/oh-my-zsh.sh
 
