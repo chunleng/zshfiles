@@ -106,6 +106,10 @@ base16_tomorrow
 export EDITOR=nvim
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250"
 
+##################
+#  Key Bindings  #
+##################
+
 custom-next(){
     zle .history-search-forward
 }
@@ -119,6 +123,7 @@ zle -N custom-prev
 bindkey '^N' custom-next
 bindkey '^P' custom-prev
 bindkey '^ ' autosuggest-execute
+bindkey '^[[Z' reverse-menu-complete
 
 ###########
 #  Alias  #
