@@ -31,7 +31,7 @@ ZSH_THEME="gitsome"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -55,7 +55,7 @@ plugins=(zsh-autosuggestions bgnotify autojump git brew-cask brew pip vi-mode zs
 
 # User configuration
 
-export PATH=${HOME}/.base/install/homebrew/Cellar/coreutils/`ls -1t ${HOME}/.base/install/homebrew/Cellar/coreutils | head -1`/libexec/gnubin:${HOME}/.base/install/homebrew/bin:/usr/local/bin:${HOME}/.base/install/rundeck/server/sbin/:${HOME}/.base/install/rundeck/tools/bin:${PATH}
+export PATH=${HOME}/.base/install/homebrew/Cellar/coreutils/`ls -1t ${HOME}/.base/install/homebrew/Cellar/coreutils | head -1`/libexec/gnubin:${HOME}/.base/install/homebrew/bin:/usr/local/bin:${HOME}/.base/install/node_modules/bin:${HOME}/.base/install/rundeck/server/sbin/:${HOME}/.base/install/rundeck/tools/bin:${PATH}
 # export PATH=":$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
