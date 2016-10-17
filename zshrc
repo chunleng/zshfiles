@@ -104,7 +104,8 @@ export BASE16_SHELL=$HOME/.config/base16-shell
 base16_tomorrow
 
 export EDITOR=nvim
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250"
+export HOMEBREW_GITHUB_API_TOKEN="a4fece8099cb00dde83c4b175033efd66459b327"
 
 ##################
 #  Key Bindings  #
