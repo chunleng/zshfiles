@@ -5,7 +5,17 @@ export ZSH=$HOME/.base/install/oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="gitsome"
+ZSH_THEME="bullet-train"
+BULLETTRAIN_PROMPT_ORDER=(
+  time
+  status
+  dir
+  git
+  context
+)
+BULLETTRAIN_STATUS_EXIT_SHOW=true
+BULLETTRAIN_STATUS_FG=black
+BULLETTRAIN_IS_SSH_CLIENT=true
 
 
 # Uncomment the following line to use case-sensitive completion.

@@ -16,6 +16,12 @@
 [submodule "plugins/k"]
 	path = plugins/k
 	url = https://github.com/supercrabtree/k
-[submodule "themes/gitsome"]
-	path = themes/gitsome
-	url = https://github.com/mtully/gitsome.git
+[submodule "themes/geometry"]
+	path = themes/geometry
+	url = https://github.com/frmendes/geometry.git
+[submodule "bullet-train-oh-my-zsh-theme"]
+	path = bullet-train-oh-my-zsh-theme
+	url = https://github.com/caiogondim/bullet-train-oh-my-zsh-theme.git
+[submodule "themes/bullet-train-oh-my-zsh-theme"]
+	path = themes/bullet-train-oh-my-zsh-theme
+	url = https://github.com/caiogondim/bullet-train-oh-my-zsh-theme.git
