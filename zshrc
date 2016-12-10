@@ -142,6 +142,7 @@ bindkey '^[[Z' reverse-menu-complete
 alias htop="sudo htop"
 alias ls="ls --color"
 alias lg="k -ah"
+alias ls="ls --color"
 alias vim="nvim -i NONE"
 
 test -f ~/.zshrc_local && source ~/.zshrc_local
