@@ -148,4 +148,6 @@ test -f ~/.zshrc_local && source ~/.zshrc_local
 
 
 # start tmux
-tmux a
+if [ -z "$TMUX" ]; then
+    tmux a
+fi
