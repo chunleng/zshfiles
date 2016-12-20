@@ -149,5 +149,5 @@ test -f ~/.zshrc_local && source ~/.zshrc_local
 
 # start tmux
 if [ -z "$TMUX" ]; then
-    tmux a
+    tmux a || tmux new
 fi
