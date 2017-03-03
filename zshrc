@@ -148,6 +148,10 @@ alias lg="k -ah"
 alias ls="ls --color"
 alias vim="nvim -i NONE"
 
+o(){
+    nohup xdg-open $@ >/dev/null 2>&1
+}
+
 test -f ~/.zshrc_local && source ~/.zshrc_local
 
 
