@@ -64,8 +64,12 @@ plugins=(zsh-autosuggestions bgnotify autojump git brew-cask brew pip vi-mode zs
 . ~/.zsh_custom/plugins/zsh-bd/bd.zsh
 
 # User configuration
+ADD_PATH=""
+if [ -d "${HOME}/.base/install/homebrew/Cellar/coreutils" ]; then
+    ADD_PATH="${ADD_PATH}:${HOME}/.base/install/homebrew/Cellar/coreutils/`ls -1t ${HOME}/.base/install/homebrew/Cellar/coreutils | head -1`/libexec/gnubin"
+fi
 
-export PATH=${HOME}/.base/install/homebrew/Cellar/coreutils/`ls -1t ${HOME}/.base/install/homebrew/Cellar/coreutils | head -1`/libexec/gnubin:${HOME}/.base/install/homebrew/bin:/usr/local/bin:${HOME}/.base/install/node_modules/bin:${HOME}/.base/install/rundeck/server/sbin/:${HOME}/.base/install/rundeck/tools/bin:${PATH}
+export PATH=${HOME}/.base/install/homebrew/bin:/usr/local/bin:${HOME}/.base/install/node_modules/bin:${HOME}/.base/install/rundeck/server/sbin/:${HOME}/.base/install/rundeck/tools/bin:${PATH}
 # export PATH=":$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
