@@ -32,7 +32,7 @@ BULLETTRAIN_IS_SSH_CLIENT=true
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -64,12 +64,12 @@ plugins=(zsh-autosuggestions bgnotify autojump git brew-cask brew pip vi-mode zs
 . ~/.zsh_custom/plugins/zsh-bd/bd.zsh
 
 # User configuration
-ADD_PATH=""
+ADD_PATH="${HOME}/.base/install/homebrew/bin:/usr/local/bin:${HOME}/.base/install/node_modules/bin:${HOME}/.base/install/rundeck/server/sbin/:${HOME}/.base/install/rundeck/tools/bin"
 if [ -d "${HOME}/.base/install/homebrew/Cellar/coreutils" ]; then
-    ADD_PATH="${ADD_PATH}:${HOME}/.base/install/homebrew/Cellar/coreutils/`ls -1t ${HOME}/.base/install/homebrew/Cellar/coreutils | head -1`/libexec/gnubin"
+    ADD_PATH="${HOME}/.base/install/homebrew/Cellar/coreutils/`ls -1t ${HOME}/.base/install/homebrew/Cellar/coreutils | head -1`/libexec/gnubin:${ADD_PATH}"
 fi
 
-export PATH=${HOME}/.base/install/homebrew/bin:/usr/local/bin:${HOME}/.base/install/node_modules/bin:${HOME}/.base/install/rundeck/server/sbin/:${HOME}/.base/install/rundeck/tools/bin:${PATH}
+export PATH=${ADD_PATH}:${PATH}
 # export PATH=":$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -144,6 +144,7 @@ bindkey '^[[Z' reverse-menu-complete
 #  Alias  #
 ###########
 alias htop="sudo htop"
+alias ls="ls --color"
 alias lg="k -ah"
 alias ls="ls --color"
 alias vim="nvim -i NONE"
