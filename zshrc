@@ -61,7 +61,7 @@ ZSH_CUSTOM=~/.zsh_custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(zsh-autosuggestions bgnotify autojump git brew-cask brew pip vi-mode \
-    zsh-syntax-highlighting k mvn)
+    zsh-syntax-highlighting k mvn rvm)
 . ~/.zsh_custom/plugins/zsh-bd/bd.zsh
 
 # User configuration
@@ -145,9 +145,8 @@ bindkey '^[[Z' reverse-menu-complete
 #  Alias  #
 ###########
 alias htop="sudo htop"
-alias ls="ls --color"
+alias ls="ls --color --group-directories-first"
 alias lg="k -ah"
-alias ls="ls --color"
 alias vim="nvim -i NONE"
 
 o(){
@@ -161,3 +160,6 @@ test -f ~/.zshrc_local && source ~/.zshrc_local
 if [ -z "$TMUX" ]; then
     tmux a || tmux new
 fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
