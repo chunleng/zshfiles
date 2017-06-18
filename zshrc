@@ -14,7 +14,6 @@ BULLETTRAIN_PROMPT_ORDER=(
   context
 )
 BULLETTRAIN_STATUS_EXIT_SHOW=true
-BULLETTRAIN_STATUS_FG=black
 BULLETTRAIN_IS_SSH_CLIENT=true
 
 
@@ -113,12 +112,12 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
 
-export BASE16_SHELL=$HOME/.config/base16-shell
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-base16_tomorrow
+# export BASE16_SHELL=$HOME/.config/base16-shell
+# [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+# base16_tomorrow
 
 export EDITOR=nvim
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=243"
 export HOMEBREW_GITHUB_API_TOKEN="a4fece8099cb00dde83c4b175033efd66459b327"
 
 ##################
@@ -144,10 +143,9 @@ bindkey '^[[Z' reverse-menu-complete
 #  Alias  #
 ###########
 alias htop="sudo htop"
-alias ls="ls --color"
 alias lg="k -ah"
 alias ls="ls --color"
-alias vim="nvim -i NONE"
+alias vim="nvim"
 
 test -f ~/.zshrc_local && source ~/.zshrc_local
 
