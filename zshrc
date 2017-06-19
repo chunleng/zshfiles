@@ -7,11 +7,11 @@ export ZSH=$HOME/.base/install/oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="bullet-train"
 BULLETTRAIN_PROMPT_ORDER=(
-  time
-  status
-  dir
-  git
-  context
+time
+status
+dir
+git
+context
 )
 BULLETTRAIN_STATUS_EXIT_SHOW=true
 BULLETTRAIN_IS_SSH_CLIENT=true
@@ -59,7 +59,8 @@ ZSH_CUSTOM=~/.zsh_custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions bgnotify autojump git brew-cask brew pip vi-mode zsh-syntax-highlighting k)
+plugins=(zsh-autosuggestions bgnotify autojump git brew-cask brew pip vi-mode \
+    zsh-syntax-highlighting k mvn rvm)
 . ~/.zsh_custom/plugins/zsh-bd/bd.zsh
 
 # User configuration
@@ -112,9 +113,9 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export TERM=xterm-256color
 
-# export BASE16_SHELL=$HOME/.config/base16-shell
-# [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-# base16_tomorrow
+export BASE16_SHELL=$HOME/.config/base16-shell
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+base16_tomorrow
 
 export EDITOR=nvim
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=243"
@@ -125,10 +126,10 @@ export HOMEBREW_GITHUB_API_TOKEN="a4fece8099cb00dde83c4b175033efd66459b327"
 ##################
 
 custom-next(){
-    zle .history-search-forward
+zle .history-search-forward
 }
 custom-prev(){
-    zle .history-search-backward
+zle .history-search-backward
 }
 
 zle -N custom-next
@@ -143,9 +144,13 @@ bindkey '^[[Z' reverse-menu-complete
 #  Alias  #
 ###########
 alias htop="sudo htop"
+alias ls="ls --color --group-directories-first"
 alias lg="k -ah"
-alias ls="ls --color"
 alias vim="nvim"
+
+o(){
+    nohup xdg-open $@ >/dev/null 2>&1
+}
 
 test -f ~/.zshrc_local && source ~/.zshrc_local
 
@@ -154,3 +159,6 @@ test -f ~/.zshrc_local && source ~/.zshrc_local
 if [ -z "$TMUX" ]; then
     tmux a || tmux new
 fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
