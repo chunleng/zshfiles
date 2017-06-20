@@ -14,7 +14,6 @@ git
 context
 )
 BULLETTRAIN_STATUS_EXIT_SHOW=true
-BULLETTRAIN_STATUS_FG=black
 BULLETTRAIN_IS_SSH_CLIENT=true
 
 
@@ -61,7 +60,7 @@ ZSH_CUSTOM=~/.zsh_custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(zsh-autosuggestions bgnotify autojump git brew-cask brew pip vi-mode \
-    zsh-syntax-highlighting k mvn rvm docker)
+    zsh-syntax-highlighting k mvn rvm docker git-flow)
 . ~/.zsh_custom/plugins/zsh-bd/bd.zsh
 
 # User configuration
@@ -147,7 +146,7 @@ bindkey '^[[Z' reverse-menu-complete
 alias htop="sudo htop"
 alias ls="ls --color --group-directories-first"
 alias lg="k -ah"
-alias vim="nvim -i NONE"
+alias vim="nvim"
 
 o(){
     nohup xdg-open $@ >/dev/null 2>&1
