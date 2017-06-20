@@ -7,11 +7,11 @@ export ZSH=$HOME/.base/install/oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="bullet-train"
 BULLETTRAIN_PROMPT_ORDER=(
-  time
-  status
-  dir
-  git
-  context
+time
+status
+dir
+git
+context
 )
 BULLETTRAIN_STATUS_EXIT_SHOW=true
 BULLETTRAIN_STATUS_FG=black
@@ -61,7 +61,7 @@ ZSH_CUSTOM=~/.zsh_custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(zsh-autosuggestions bgnotify autojump git brew-cask brew pip vi-mode \
-    zsh-syntax-highlighting k mvn rvm)
+    zsh-syntax-highlighting k mvn rvm docker)
 . ~/.zsh_custom/plugins/zsh-bd/bd.zsh
 
 # User configuration
@@ -116,10 +116,10 @@ export TERM=xterm-256color
 
 export BASE16_SHELL=$HOME/.config/base16-shell
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-base16_tomorrow
+base16_tomorrow-night
 
 export EDITOR=nvim
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=243"
 export HOMEBREW_GITHUB_API_TOKEN="a4fece8099cb00dde83c4b175033efd66459b327"
 
 ##################
@@ -127,10 +127,10 @@ export HOMEBREW_GITHUB_API_TOKEN="a4fece8099cb00dde83c4b175033efd66459b327"
 ##################
 
 custom-next(){
-    zle .history-search-forward
+zle .history-search-forward
 }
 custom-prev(){
-    zle .history-search-backward
+zle .history-search-backward
 }
 
 zle -N custom-next
@@ -163,3 +163,7 @@ fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+MODE_INDICATOR="%{$fg_bold[White]%}<%{$fg[White]%}<<%{$reset_color%}"
+
+#  vi: et sw=4 ts=4 sts=4
