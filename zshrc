@@ -5,16 +5,30 @@ export ZSH=$HOME/.base/install/oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
+foo(){
+    export BULLETTRAIN_PROMPT_ORDER=(time custom)
+    PROMPT=''
+    [[ $BULLETTRAIN_PROMPT_ADD_NEWLINE == true ]] && PROMPT="$PROMPT$NEWLINE"
+    PROMPT="$PROMPT"'%{%f%b%k%}$(build_prompt)'
+    [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == true ]] && PROMPT="$PROMPT$NEWLINE"
+    PROMPT="$PROMPT"'%{${fg_bold[default]}%}'
+    [[ $BULLETTRAIN_PROMPT_SEPARATE_LINE == false ]] && PROMPT="$PROMPT "
+    PROMPT="$PROMPT"'$(prompt_char) %{$reset_color%}'
+}
 ZSH_THEME="bullet-train"
 BULLETTRAIN_PROMPT_ORDER=(
 time
 status
 dir
+ruby
 git
 context
 )
 BULLETTRAIN_STATUS_EXIT_SHOW=true
 BULLETTRAIN_IS_SSH_CLIENT=true
+BULLETTRAIN_RUBY_PREFIX=""
+BULLETTRAIN_RUBY_BG="red"
+#BULLETTRAIN_CUSTOM_MSG=`foo`
 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -60,7 +74,7 @@ ZSH_CUSTOM=~/.zsh_custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(zsh-autosuggestions bgnotify autojump git brew-cask brew pip vi-mode \
-    zsh-syntax-highlighting k mvn rvm docker git-flow)
+    zsh-syntax-highlighting k mvn  docker git-flow)
 . ~/.zsh_custom/plugins/zsh-bd/bd.zsh
 
 # User configuration
@@ -117,7 +131,7 @@ export BASE16_SHELL=$HOME/.config/base16-shell
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 base16_tomorrow-night
 
-export EDITOR=nvim
+export EDITOR="nvim -u NORC"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=243"
 export HOMEBREW_GITHUB_API_TOKEN="a4fece8099cb00dde83c4b175033efd66459b327"
 
@@ -160,8 +174,8 @@ if [ -z "$TMUX" ]; then
     tmux a || tmux new
 fi
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# Rbenv
+eval "$(rbenv init -)"
 
 MODE_INDICATOR="%{$fg_bold[White]%}<%{$fg[White]%}<<%{$reset_color%}"
 
