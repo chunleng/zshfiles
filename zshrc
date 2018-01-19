@@ -162,6 +162,8 @@ alias ls="ls --color --group-directories-first"
 alias lg="k -ah"
 alias vim="nvim"
 
+bindkey "" push-input
+
 o(){
     nohup xdg-open $@ >/dev/null 2>&1
 }
