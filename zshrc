@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.base/install/oh-my-zsh
+export ZSH=${HOME}/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -24,12 +24,12 @@ ruby
 git
 context
 )
+export SEGMENT_SEPARATOR=""
 BULLETTRAIN_STATUS_EXIT_SHOW=true
 BULLETTRAIN_IS_SSH_CLIENT=true
 BULLETTRAIN_RUBY_PREFIX=""
 BULLETTRAIN_RUBY_BG="red"
-#BULLETTRAIN_CUSTOM_MSG=`foo`
-
+BULLETTRAIN_GIT_EXTENDED=true
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -78,28 +78,16 @@ plugins=(zsh-autosuggestions bgnotify autojump git brew-cask brew pip vi-mode \
 . ~/.zsh_custom/plugins/zsh-bd/bd.zsh
 
 # User configuration
-ADD_PATH="${HOME}/.base/install/homebrew/bin:/usr/local/bin:${HOME}/.base/install/node_modules/bin:${HOME}/.base/install/rundeck/server/sbin/:${HOME}/.base/install/rundeck/tools/bin"
-if [ -d "${HOME}/.base/install/homebrew/Cellar/coreutils" ]; then
-    ADD_PATH="${HOME}/.base/install/homebrew/Cellar/coreutils/`ls -1t ${HOME}/.base/install/homebrew/Cellar/coreutils | head -1`/libexec/gnubin:${ADD_PATH}"
+ADD_PATH="/usr/local/bin"
+if [ -d "/usr/local/opt/coreutils/libexec/gnubin" ]; then
+    ADD_PATH="/usr/local/opt/coreutils/libexec/gnubin"
 fi
 
 export PATH=${ADD_PATH}:${PATH}
 # export PATH=":$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-export RDECK_BASE=${HOME}/.base/install/rundeck
-
 source $ZSH/oh-my-zsh.sh
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -107,19 +95,9 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 ############################
 #  Non-oh-my-zsh Settings  #
 ############################
-
 
 # Shell Colorscheme
 export CLICOLOR=1
@@ -133,7 +111,6 @@ base16_tomorrow-night
 
 export EDITOR="nvim -u NORC"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=243"
-export HOMEBREW_GITHUB_API_TOKEN="a4fece8099cb00dde83c4b175033efd66459b327"
 
 ##################
 #  Key Bindings  #
@@ -160,7 +137,6 @@ bindkey '^[[Z' reverse-menu-complete
 alias htop="sudo htop"
 alias ls="ls --color --group-directories-first"
 alias lg="k -ah"
-alias vim="nvim"
 
 bindkey "" push-input
 
@@ -172,13 +148,10 @@ test -f ~/.zshrc_local && source ~/.zshrc_local
 
 
 # start tmux
-if [ -z "$TMUX" ]; then
-    tmux a || tmux new
+if hash tmux 2>/dev/null; then
+    if [ -z "$TMUX" ]; then tmux a || tmux new; fi
 fi
-
-# Rbenv
-eval "$(rbenv init -)"
+if hash rbenv 2>/dev/null; then eval "$(rbenv init -)"; fi
+if hash nvim 2>/dev/null; then alias vim="nvim"; fi
 
 MODE_INDICATOR="%{$fg_bold[White]%}<%{$fg[White]%}<<%{$reset_color%}"
-
-#  vi: et sw=4 ts=4 sts=4
