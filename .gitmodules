@@ -22,6 +22,6 @@
 [submodule "bullet-train-oh-my-zsh-theme"]
 	path = bullet-train-oh-my-zsh-theme
 	url = https://github.com/caiogondim/bullet-train-oh-my-zsh-theme.git
-[submodule "themes/bullet-train-oh-my-zsh-theme"]
-	path = themes/bullet-train-oh-my-zsh-theme
-	url = https://github.com/caiogondim/bullet-train-oh-my-zsh-theme.git
+[submodule "themes/spaceship-prompt"]
+	path = themes/spaceship-prompt
+	url = https://github.com/denysdovhan/spaceship-prompt.git
