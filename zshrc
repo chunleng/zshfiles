@@ -49,8 +49,8 @@ ZSH_CUSTOM=~/.zsh_custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions bgnotify autojump git brew-cask brew pip vi-mode \
-    zsh-syntax-highlighting k mvn  docker git-flow)
+plugins=(zsh-autosuggestions bgnotify autojump git pip vi-mode \
+    zsh-syntax-highlighting k mvn docker git-flow)
 . ~/.zsh_custom/plugins/zsh-bd/bd.zsh
 
 # User configuration
@@ -85,7 +85,7 @@ export BASE16_SHELL=$HOME/.config/base16-shell
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 base16_tomorrow-night
 
-export EDITOR="nvim -u NORC"
+export EDITOR="nvim"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=243"
 
 ##################
@@ -110,15 +110,10 @@ bindkey '^[[Z' reverse-menu-complete
 ###########
 #  Alias  #
 ###########
-alias htop="sudo htop"
 alias ls="ls --color --group-directories-first"
 alias lg="k -ah"
 
 bindkey "" push-input
-
-o(){
-    nohup xdg-open $@ >/dev/null 2>&1
-}
 
 test -f ~/.zshrc_local && source ~/.zshrc_local
 
@@ -131,3 +126,9 @@ if hash rbenv 2>/dev/null; then eval "$(rbenv init -)"; fi
 if hash nvim 2>/dev/null; then alias vim="nvim"; fi
 
 MODE_INDICATOR="%{$fg_bold[White]%}<%{$fg[White]%}<<%{$reset_color%}"
+
+PATH="/Users/chunlenglim/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/Users/chunlenglim/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/Users/chunlenglim/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/Users/chunlenglim/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/chunlenglim/perl5"; export PERL_MM_OPT;
