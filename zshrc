@@ -124,6 +124,7 @@ if hash tmux 2>/dev/null; then
 fi
 if hash rbenv 2>/dev/null; then eval "$(rbenv init -)"; fi
 if hash nvim 2>/dev/null; then alias vim="nvim"; fi
+if hash jenv 2>/dev/null; then eval "$(jenv init -)"; fi
 
 MODE_INDICATOR="%{$fg_bold[White]%}<%{$fg[White]%}<<%{$reset_color%}"
 
