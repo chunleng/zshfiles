@@ -131,4 +131,7 @@ if hash jenv 2>/dev/null; then eval "$(jenv init -)"; fi
 if hash nodenv 2>/dev/null; then eval "$(nodenv init -)"; fi
 if hash pyenv 2>/dev/null; then eval "$(pyenv init -)"; fi
 
+# Update brew regularly
+if hash brew 2>/dev/null; then (brew update > test 2>&1 &); fi
+
 test -f ~/.zshrc_local && source ~/.zshrc_local
