@@ -11,6 +11,10 @@ chsh -s $CURRENT_ZSH
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+# Update submodule
+git submodule init
+git submodule update --recursive
+
 # Confirmation existence of necessary folders
 mkdir -p ${HOME}/.config
 mkdir -p ${HOME}/.zsh_custom/themes
