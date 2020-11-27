@@ -12,8 +12,8 @@ chsh -s $CURRENT_ZSH
 test -d ~/.oh-my-zsh || sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Update submodule
-git submodule init
-git submodule update --recursive
+git -C ${APP_PATH} submodule init
+git -C ${APP_PATH} submodule update --recursive
 
 # Confirmation existence of necessary folders
 mkdir -p ${HOME}/.config
