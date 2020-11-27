@@ -85,7 +85,7 @@ export BASE16_SHELL=$HOME/.config/base16-shell
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 base16_tomorrow-night
 
-export EDITOR="nvim"
+export EDITOR="vim"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=243"
 
 ##################
@@ -120,17 +120,12 @@ if hash tmux 2>/dev/null; then
     if [ -z "$TMUX" ]; then tmux a || tmux new; fi
 fi
 if hash rbenv 2>/dev/null; then eval "$(rbenv init -)"; fi
-if hash nvim 2>/dev/null; then alias vim="nvim"; fi
+if hash nvim 2>/dev/null; then
+    alias vim="nvim";
+    export EDITOR="nvim"
+fi
 if hash jenv 2>/dev/null; then eval "$(jenv init -)"; fi
 if hash nodenv 2>/dev/null; then eval "$(nodenv init -)"; fi
 if hash pyenv 2>/dev/null; then eval "$(pyenv init -)"; fi
-
-MODE_INDICATOR="%{$fg_bold[White]%}<%{$fg[White]%}<<%{$reset_color%}"
-
-PATH="/Users/chunlenglim/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/Users/chunlenglim/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/chunlenglim/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/chunlenglim/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/chunlenglim/perl5"; export PERL_MM_OPT;
 
 test -f ~/.zshrc_local && source ~/.zshrc_local
