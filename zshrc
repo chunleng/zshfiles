@@ -110,16 +110,17 @@ bindkey '^[[Z' reverse-menu-complete
 ###########
 #  Alias  #
 ###########
+alias ls="ls -G"
 alias lg="k -ah"
 
 bindkey "" push-input
 
 if hash gls 2>/dev/null; then
 	alias ls="gls --color --group-directories-first"
-if
+fi
 # start tmux
 if hash tmux 2>/dev/null; then
-    if [ -z "$TMUX" ]; then tmux a || tmux new; fi
+    test -z "$TMUX" && tmux a || tmux new
 fi
 if hash rbenv 2>/dev/null; then eval "$(rbenv init -)"; fi
 if hash nvim 2>/dev/null; then
