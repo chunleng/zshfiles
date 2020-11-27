@@ -115,9 +115,6 @@ alias lg="k -ah"
 
 bindkey "" push-input
 
-test -f ~/.zshrc_local && source ~/.zshrc_local
-
-
 # start tmux
 if hash tmux 2>/dev/null; then
     if [ -z "$TMUX" ]; then tmux a || tmux new; fi
@@ -133,3 +130,5 @@ PERL5LIB="/Users/chunlenglim/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export P
 PERL_LOCAL_LIB_ROOT="/Users/chunlenglim/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/Users/chunlenglim/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/Users/chunlenglim/perl5"; export PERL_MM_OPT;
+
+test -f ~/.zshrc_local && source ~/.zshrc_local
