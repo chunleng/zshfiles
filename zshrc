@@ -122,6 +122,8 @@ fi
 if hash rbenv 2>/dev/null; then eval "$(rbenv init -)"; fi
 if hash nvim 2>/dev/null; then alias vim="nvim"; fi
 if hash jenv 2>/dev/null; then eval "$(jenv init -)"; fi
+if hash nodenv 2>/dev/null; then eval "$(nodenv init -)"; fi
+if hash pyenv 2>/dev/null; then eval "$(pyenv init -)"; fi
 
 MODE_INDICATOR="%{$fg_bold[White]%}<%{$fg[White]%}<<%{$reset_color%}"
 
