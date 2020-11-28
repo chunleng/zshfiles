@@ -120,7 +120,7 @@ if hash gls 2>/dev/null; then
 fi
 # start tmux
 if hash tmux 2>/dev/null; then
-    test -z "$TMUX" && tmux a || tmux new
+    if [ -z "$TMUX" ]; then tmux a || tmux new; fi
 fi
 if hash rbenv 2>/dev/null; then eval "$(rbenv init -)"; fi
 if hash nvim 2>/dev/null; then
