@@ -49,14 +49,17 @@ ZSH_CUSTOM=~/.zsh_custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions bgnotify autojump git pip vi-mode \
-    zsh-syntax-highlighting k mvn docker git-flow)
+plugins=(zsh-autosuggestions bgnotify autojump vi-mode \
+    zsh-syntax-highlighting k docker)
 . ~/.zsh_custom/plugins/zsh-bd/bd.zsh
 
 # User configuration
 ADD_PATH="/usr/local/bin"
 if [ -d "/usr/local/opt/coreutils/libexec/gnubin" ]; then
-    ADD_PATH="/usr/local/opt/coreutils/libexec/gnubin"
+    ADD_PATH="/usr/local/opt/coreutils/libexec/gnubin:${ADD_PATH}"
+fi
+if [ -d "${HOME}/.java-language-server" ]; then
+    ADD_PATH="${HOME}/.java-language-server:${ADD_PATH}"
 fi
 
 export PATH=${ADD_PATH}:${PATH}
@@ -122,16 +125,24 @@ fi
 if hash tmux 2>/dev/null; then
     if [ -z "$TMUX" ]; then tmux a || tmux new; fi
 fi
-if hash rbenv 2>/dev/null; then eval "$(rbenv init -)"; fi
 if hash nvim 2>/dev/null; then
     alias vim="nvim";
     export EDITOR="nvim"
 fi
-if hash jenv 2>/dev/null; then eval "$(jenv init -)"; fi
-if hash nodenv 2>/dev/null; then eval "$(nodenv init -)"; fi
+if hash rbenv 2>/dev/null; then eval "$(rbenv init -)"; fi
 if hash pyenv 2>/dev/null; then eval "$(pyenv init -)"; fi
+if hash nodenv 2>/dev/null; then eval "$(nodenv init -)"; fi
+if hash jenv 2>/dev/null; then eval "$(jenv init -)"; fi
 
 # Update brew regularly
-if hash brew 2>/dev/null; then (brew update > test 2>&1 &); fi
+if hash brew 2>/dev/null && ! ps aux|grep "brew.sh update"|grep -vq grep; then
+    (brew update >> .brew_update 2>&1 &);
+fi
+
+# Prune docker danglingi image regularly
+if hash docker 2>/dev/null && ! ps aux|grep "docker image prune -f"|grep -vq grep; then
+    (docker image prune -f >> .docker_prune 2>&1 &);
+fi
 
 test -f ~/.zshrc_local && source ~/.zshrc_local
+test -f ~/.zshrc_docker && source ~/.zshrc_docker

@@ -6,7 +6,7 @@ APP_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
 CURRENT_ZSH=`which zsh`
 
 grep -q $CURRENT_ZSH /etc/shells || echo $CURRENT_ZSH | sudo tee -a /etc/shells > /dev/null
-chsh -s $CURRENT_ZSH
+[ $SHELL = `which zsh` ] || chsh -s $CURRENT_ZSH
 
 # Install oh-my-zsh
 test -d ~/.oh-my-zsh || sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
