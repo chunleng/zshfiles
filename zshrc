@@ -18,7 +18,8 @@ ZSH_THEME="spaceship"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=1
+export DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to disable colors in ls.
 DISABLE_LS_COLORS="true"
@@ -50,7 +51,7 @@ ZSH_CUSTOM=~/.zsh_custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(zsh-autosuggestions bgnotify autojump vi-mode \
-    zsh-syntax-highlighting k docker)
+    zsh-syntax-highlighting k autoswitch_virtualenv)
 . ~/.zsh_custom/plugins/zsh-bd/bd.zsh
 
 # User configuration
@@ -91,6 +92,10 @@ base16_tomorrow-night
 export EDITOR="vim"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=243"
 
+# vi-mode
+export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+export VI_MODE_SET_CURSOR=true
+
 ##################
 #  Key Bindings  #
 ##################
@@ -127,8 +132,10 @@ if hash tmux 2>/dev/null; then
 fi
 if hash nvim 2>/dev/null; then
     alias vim="nvim";
+    alias v="nvim";
     export EDITOR="nvim"
 fi
+if hash git 2>/dev/null; then alias g="git"; fi
 if hash rbenv 2>/dev/null; then eval "$(rbenv init -)"; fi
 if hash pyenv 2>/dev/null; then eval "$(pyenv init -)"; fi
 if hash nodenv 2>/dev/null; then eval "$(nodenv init -)"; fi
