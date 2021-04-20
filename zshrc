@@ -51,7 +51,7 @@ ZSH_CUSTOM=~/.zsh_custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(zsh-autosuggestions bgnotify autojump vi-mode \
-    zsh-syntax-highlighting k autoswitch_virtualenv)
+    zsh-syntax-highlighting k autoswitch_virtualenv zsh-better-npm-completion)
 . ~/.zsh_custom/plugins/zsh-bd/bd.zsh
 
 # User configuration
@@ -202,15 +202,24 @@ if hash rbenv 2>/dev/null; then eval "$(rbenv init -)"; fi
 if hash pyenv 2>/dev/null; then eval "$(pyenv init -)"; fi
 if hash nodenv 2>/dev/null; then eval "$(nodenv init -)"; fi
 if hash jenv 2>/dev/null; then eval "$(jenv init -)"; fi
+if hash goenv 2>/dev/null; then eval "$(goenv init -)"; fi
 
 # Update brew regularly
 if hash brew 2>/dev/null && ! ps aux|grep "brew.sh update"|grep -vq grep; then
     (brew update >> .brew_update 2>&1 &);
 fi
 
-# Prune docker danglingi image regularly
+# Prune docker dangling image regularly
 if hash docker 2>/dev/null && ! ps aux|grep "docker image prune -f"|grep -vq grep; then
     (docker image prune -f >> .docker_prune 2>&1 &);
+fi
+
+if [ -d $(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/ ]; then
+    source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+    source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+    if ! ps aux|grep "gcloud components update"|grep -vq grep; then
+        (gcloud components update >> .gcloud_update 2>&1 &);
+    fi
 fi
 
 test -f ~/.zshrc_local && source ~/.zshrc_local

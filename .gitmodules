@@ -40,3 +40,6 @@
 [submodule "autoswitch_virtualenv"]
 	path = autoswitch_virtualenv
 	url = https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv
+[submodule "plugins/zsh-better-npm-completion"]
+	path = plugins/zsh-better-npm-completion
+	url = https://github.com/lukechilds/zsh-better-npm-completion
