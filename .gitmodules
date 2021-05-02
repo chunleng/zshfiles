@@ -1,9 +1,6 @@
 [submodule "base16-shell"]
 	path = base16-shell
 	url = https://github.com/chriskempson/base16-shell.git
-[submodule "plugins/gitsome"]
-	path = plugins/gitsome
-	url = https://github.com/mtully/gitsome.git
 [submodule "plugins/zsh-autosuggestions"]
 	path = plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
@@ -11,35 +8,17 @@
 	path = plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
 [submodule "plugins/zsh-bd"]
-	path = plugins/zsh-bd
+	path = plugins/bd
 	url = https://github.com/Tarrasch/zsh-bd
-[submodule "plugins/k"]
-	path = plugins/k
-	url = https://github.com/supercrabtree/k
-[submodule "themes/geometry"]
-	path = themes/geometry
-	url = https://github.com/frmendes/geometry.git
-[submodule "bullet-train-oh-my-zsh-theme"]
-	path = bullet-train-oh-my-zsh-theme
-	url = https://github.com/caiogondim/bullet-train-oh-my-zsh-theme.git
 [submodule "themes/spaceship-prompt"]
 	path = themes/spaceship-prompt
 	url = https://github.com/denysdovhan/spaceship-prompt.git
-[submodule "plugins/zsh-auto-virtualenv"]
-	path = plugins/zsh-auto-virtualenv
-	url = https://github.com/tek/zsh-auto-virtualenv
-[submodule "plugins/virtualenv"]
-	path = plugins/virtualenv
-	url = https://github.com/tek/zsh-auto-virtualenv
-[submodule "plugins/autoswitch-virtualenv"]
-	path = plugins/autoswitch-virtualenv
-	url = https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv
 [submodule "plugins/autoswitch_virtualenv"]
 	path = plugins/autoswitch_virtualenv
 	url = https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv
-[submodule "autoswitch_virtualenv"]
-	path = autoswitch_virtualenv
-	url = https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv
-[submodule "plugins/zsh-better-npm-completion"]
-	path = plugins/zsh-better-npm-completion
-	url = https://github.com/lukechilds/zsh-better-npm-completion
+[submodule "plugins/notify"]
+	path = plugins/notify
+	url = https://github.com/marzocchi/zsh-notify
+[submodule "plugins/bd"]
+	path = plugins/bd
+	url = https://github.com/Tarrasch/zsh-bd

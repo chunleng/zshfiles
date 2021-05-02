@@ -50,9 +50,8 @@ ZSH_CUSTOM=~/.zsh_custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions bgnotify autojump vi-mode \
-    zsh-syntax-highlighting k autoswitch_virtualenv zsh-better-npm-completion)
-. ~/.zsh_custom/plugins/zsh-bd/bd.zsh
+plugins=(zsh-autosuggestions notify autojump vi-mode \
+    zsh-syntax-highlighting autoswitch_virtualenv kubectl bd)
 
 # User configuration
 ADD_PATH="/usr/local/bin"
@@ -97,7 +96,7 @@ export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 export VI_MODE_SET_CURSOR=true
 
 # spaceship prompt
-export SPACESHIP_PROMPT_ORDER=( dir git docker pyenv venv ruby node package \
+export SPACESHIP_PROMPT_ORDER=( dir git kubectl docker pyenv venv ruby node package \
     line_sep time exec_time exit_code \
     line_sep vi_mode jobs char )
 export SPACESHIP_COLOR_NORMAL="245"
@@ -128,6 +127,13 @@ export SPACESHIP_DOCKER_PREFIX=""
 export SPACESHIP_DOCKER_SYMBOL=" "
 export SPACESHIP_DOCKER_VERBOSE=false
 export SPACESHIP_DOCKER_COLOR="38" # cyan
+export SPACESHIP_KUBECTL_SHOW=true
+export SPACESHIP_KUBECTL_SYMBOL="ﴱ "
+export SPACESHIP_KUBECTL_PREFIX=""
+export SPACESHIP_KUBECTL_COLOR="38" # cyan
+export SPACESHIP_KUBECONTEXT_NAMESPACE_SHOW=true
+export SPACESHIP_KUBECONTEXT_COLOR="38" # cyan
+export SPACESHIP_KUBECTL_VERSION_SHOW=false
 export SPACESHIP_PYENV_SYMBOL=" "
 export SPACESHIP_PYENV_COLOR="26" # blue
 export SPACESHIP_PYENV_PREFIX=""
@@ -181,7 +187,6 @@ bindkey '^[[Z' reverse-menu-complete
 #  Alias  #
 ###########
 alias ls="ls -G"
-alias lg="k -ah"
 
 bindkey "" push-input
 
@@ -198,15 +203,21 @@ if hash nvim 2>/dev/null; then
     export EDITOR="nvim"
 fi
 if hash git 2>/dev/null; then alias g="git"; fi
+if hash kubectl 2>/dev/null; then alias k="kubectl"; fi
 if hash rbenv 2>/dev/null; then eval "$(rbenv init -)"; fi
 if hash pyenv 2>/dev/null; then eval "$(pyenv init -)"; fi
 if hash nodenv 2>/dev/null; then eval "$(nodenv init -)"; fi
 if hash jenv 2>/dev/null; then eval "$(jenv init -)"; fi
 if hash goenv 2>/dev/null; then eval "$(goenv init -)"; fi
 
-# Update brew regularly
-if hash brew 2>/dev/null && ! ps aux|grep "brew.sh update"|grep -vq grep; then
-    (brew update >> .brew_update 2>&1 &);
+# Update and cleanup brew regularly
+if hash brew 2>/dev/null; then
+    if ! ps aux|grep "brew.sh update"|grep -vq grep; then
+        (brew update >> .brew_update 2>&1 &);
+    fi
+    if ! ps aux|grep "brew.rb cleanup"|grep -vq grep; then
+        (brew cleanup -s >> .brew_cleanup 2>&1 &);
+    fi
 fi
 
 # Prune docker dangling image regularly
