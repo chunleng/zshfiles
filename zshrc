@@ -84,8 +84,8 @@ zinit snippet OMZP::rbenv
 zinit ice wait lucid
 zinit snippet OMZP::jenv
 
-# https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/completion.zsh
-zinit snippet OMZL::completion.zsh
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages
+zinit snippet OMZP::colored-man-pages
 
 # https://github.com/zsh-users/zsh-autosuggestions
 zinit ice depth"1"
@@ -111,6 +111,21 @@ zinit light MichaelAquilina/zsh-autoswitch-virtualenv
 
 # https://github.com/zdharma/fast-syntax-highlighting
 zinit light zdharma/fast-syntax-highlighting
+
+# https://github.com/gradle/gradle-completion
+zinit ice depth"1" as"completion" wait lucid
+zinit light gradle/gradle-completion
+
+# https://github.com/Aloxaf/fzf-tab
+zinit ice depth"1" wait lucid
+zinit light Aloxaf/fzf-tab
+    zstyle ':fzf-tab:complete:gls*:*' fzf-preview 'bat -n --color=auto $word'
+    zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'bat -n --color=auto $word'
+    zstyle ':fzf-tab:*' fzf-bindings 'ctrl-space:toggle+down' 'bspace:backward-delete-char/eof'
+
+# https://github.com/C-uo/zsh-nodenv
+zinit ice depth"1" wait lucid
+zinit light C-uo/zsh-nodenv
 
 # User configuration
 ADD_PATH="/usr/local/bin"
@@ -162,11 +177,13 @@ alias v="nvim";
 alias g="git"
 alias k="kubectl"
 
+autoload -Uz compinit
+compinit
+source <(kubectl completion zsh)
+
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
-
-eval "$(nodenv init -)"
 
 eval "$(goenv init -)"
 
