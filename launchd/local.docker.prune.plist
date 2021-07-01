@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>local.pip.update</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>zsh</string>
+    <string>-lc</string>
+    <string>
+      docker system df > /dev/null || exit &&
+      /usr/local/bin/docker image prune -f &&
+      /usr/local/bin/terminal-notifier -message "launchd: docker prune completed" ||
+      /usr/local/bin/terminal-notifier -message "launchd: docker prune failed"
+    </string>
+  </array>
+
+  <key>Nice</key>
+  <integer>1</integer>
+
+  <!-- Launch Daily -->
+  <key>StartInterval</key>
+  <integer>86400</integer>
+
+  <!-- Use following for easy debugging -->
+  <!-- <key>RunAtLoad</key> -->
+  <!-- <true/> -->
+
+  <key>StandardErrorPath</key>
+  <string>/tmp/local.launchd/docker.out</string>
+
+  <key>StandardOutPath</key>
+  <string>/tmp/local.launchd/docker.out</string>
+</dict>
+</plist>
