@@ -1,4 +1,9 @@
 source $(brew --prefix)/Cellar/zinit/*/zinit.zsh
+
+# https://github.com/zdharma/zinit/blob/master/_zinit
+zinit ice depth"1" atinit"zpcompinit" as"completion" wait lucid
+zinit snippet https://github.com/zdharma/zinit/blob/master/_zinit
+
 zinit ice depth"1"
 zinit light spaceship-prompt/spaceship-prompt
     export SPACESHIP_PROMPT_ORDER=( dir git aws gcloud kubectl docker pyenv venv ruby node package \
@@ -84,13 +89,11 @@ zinit snippet OMZP::rbenv
 zinit ice wait lucid
 zinit snippet OMZP::jenv
 
-# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/colored-man-pages
-zinit snippet OMZP::colored-man-pages
-
 # https://github.com/zsh-users/zsh-autosuggestions
 zinit ice depth"1"
 zinit light zsh-users/zsh-autosuggestions
-bindkey '^ ' autosuggest-execute
+    bindkey '^ ' autosuggest-execute
+    bindkey -a '^ ' autosuggest-execute
 
 # https://github.com/marzocchi/zsh-notify
 # To trick zsh-notify into thinking that it is a valid program
@@ -112,32 +115,71 @@ zinit light MichaelAquilina/zsh-autoswitch-virtualenv
 # https://github.com/zdharma/fast-syntax-highlighting
 zinit light zdharma/fast-syntax-highlighting
 
-# https://github.com/gradle/gradle-completion
-zinit ice depth"1" as"completion" wait lucid
-zinit light gradle/gradle-completion
-
 # https://github.com/Aloxaf/fzf-tab
-zinit ice depth"1" wait lucid
+zinit ice depth"1" atinit"zpcompinit" wait lucid
 zinit light Aloxaf/fzf-tab
-    zstyle ':fzf-tab:complete:gls*:*' fzf-preview 'bat -n --color=auto $word'
-    zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'bat -n --color=auto $word'
-    zstyle ':fzf-tab:*' fzf-bindings 'ctrl-space:toggle+down' 'bspace:backward-delete-char/eof'
+    zstyle ':fzf-tab:complete:ls*:*' fzf-preview 'bat -n --color=auto $realpath'
+    zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'bat -n --color=auto $realpath'
+    zstyle ':fzf-tab:*' fzf-bindings 'ctrl-space:toggle+down' 'bspace:backward-delete-char/eof' 'space:accept'
 
 # https://github.com/C-uo/zsh-nodenv
 zinit ice depth"1" wait lucid
 zinit light C-uo/zsh-nodenv
 
-# User configuration
+# https://github.com/ptavares/zsh-direnv
+zinit ice wait lucid
+zinit load ptavares/zsh-direnv
+
+# https://github.com/rhysd/zsh-bundle-exec
+zinit load rhysd/zsh-bundle-exec
+    export BUNDLE_EXEC_GEMFILE_CURRENT_DIR_ONLY=yes
+    export BUNDLE_EXEC_RUBY_COMMAND=${HOME}
+
+
+
+# ZSH completion
+# ===============
+
+# https://github.com/gradle/gradle-completion
+zinit ice depth"1" as"completion" wait lucid
+zinit light gradle/gradle-completion
+
+# https://docs.docker.com/compose/completion
+zinit ice depth"1" atinit"zpcompinit" as"completion" wait lucid
+zinit snippet https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose
+
+# https://github.com/chunleng/_kubectl
+zinit ice atinit"zpcompinit" as"completion" wait lucid
+zinit light chunleng/_kubectl
+
+# https://github.com/zsh-users/zsh-completions/blob/master/src/_rails 
+zinit ice atinit"zpcompinit" as"completion" wait lucid
+zinit snippet https://github.com/zsh-users/zsh-completions/blob/master/src/_rails
+
+
+
+# Key Bindings
+# =============
+
+# Bug? for some normal binding is needed first before `-a` works
+bindkey '^N' .history-search-forward
+bindkey -a '^N' .history-search-forward
+bindkey '^P' .history-search-backward
+bindkey -a '^P' .history-search-backward
+bindkey '^T' .push-input
+bindkey -a '^T' .push-input
+bindkey '^U' .backward-kill-line
+bindkey -a '^U' .backward-kill-line
+
+# Local Settings
+# ===============
+
 ADD_PATH="/usr/local/bin"
 if [ -d "/usr/local/opt/coreutils/libexec/gnubin" ]; then
     ADD_PATH="/usr/local/opt/coreutils/libexec/gnubin:${ADD_PATH}"
 fi
 
 export PATH=${ADD_PATH}:${PATH}
-
-############################
-#  Non-oh-my-zsh Settings  #
-############################
 
 # Shell Colorscheme
 export LC_ALL=en_US.UTF-8
@@ -146,40 +188,13 @@ export EDITOR="nvim"
 
 export FZF_DEFAULT_COMMAND='fd --type f'
 
-
-##################
-#  Key Bindings  #
-##################
-
-custom-next(){
-    zle .history-search-forward
-}
-custom-prev(){
-    zle .history-search-backward
-}
-
-zle -N custom-next
-zle -N custom-prev
-
-bindkey '^N' custom-next
-bindkey '^P' custom-prev
-
-# Allow usage of shift tab to complete
-bindkey '^[[Z' reverse-menu-complete
-bindkey "" push-input
-
-###########
-#  Alias  #
-###########
-alias ls="gls --color --group-directories-first"
+# Ctrl-w deletes alphanumeric and the following characters
+export WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
+alias ls="ls --color --group-directories-first"
 alias vim="nvim";
 alias v="nvim";
 alias g="git"
 alias k="kubectl"
-
-autoload -Uz compinit
-compinit
-source <(kubectl completion zsh)
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -187,8 +202,8 @@ eval "$(pyenv init --path)"
 
 eval "$(goenv init -)"
 
-source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+# source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+# source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 # Android Development
 if [ -d $HOME/Library/Android/sdk ]; then
