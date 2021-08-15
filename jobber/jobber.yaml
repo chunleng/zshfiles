@@ -1,0 +1,77 @@
+version: 1.4
+prefs:
+  logPath: .jobber-logs/execution.log
+
+  runLog:
+    type: file
+    path: .jobber-logs/run.log
+    maxFileLen: 50m
+    maxHistories: 100
+
+resultSinks:
+  - &notify
+    type: program
+    path: /Users/lim/.jobber-notify.sh
+
+  - &log
+    type: filesystem
+    path: /tmp/
+    data:
+      - stdout
+      - stderr
+    maxAgeDays: 30
+
+jobs:
+  update_pip_3:
+    cmd: |
+      pip3 list --disable-pip-version-check --no-python-version-warning --outdated --format=freeze |
+        grep -v '^\-e' | cut -d'=' -f1 |
+        xargs -n1 ~/.pyenv/shims/pip3 install -U
+    time: '0 R R * * *'
+    notifyOnError:
+      - *log
+      - *notify
+    notifyOnSuccess:
+      - *log
+
+  update_pip_2:
+    cmd: |
+      pip list --disable-pip-version-check --no-python-version-warning --outdated --format=freeze |
+        grep -v '^\-e' | cut -d'=' -f1 |
+        xargs -n1 ~/.pyenv/shims/pip install -U
+    time: '0 R R * * *'
+    notifyOnError:
+      - *log
+      - *notify
+    notifyOnSuccess:
+      - *log
+
+  update_npm:
+    cmd: |
+      npm update -g
+    time: '0 R R * * *'
+    notifyOnError:
+      - *log
+      - *notify
+    notifyOnSuccess:
+      - *log
+
+  update_brew:
+    cmd: |
+      brew update && brew upgrade && brew cleanup
+    time: '0 R R * * *'
+    notifyOnError:
+      - *log
+      - *notify
+    notifyOnSuccess:
+      - *log
+
+  update_gcloud:
+    cmd: |
+      gcloud components update
+    time: '0 R R * * *'
+    notifyOnError:
+      - *log
+      - *notify
+    notifyOnSuccess:
+      - *log
