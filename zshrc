@@ -1,7 +1,7 @@
 source $(brew --prefix)/Cellar/zinit/*/zinit.zsh
 
 # https://github.com/zdharma/zinit/blob/master/_zinit
-zinit ice depth"1" atinit"zpcompinit" as"completion" wait lucid
+zinit ice depth"1" atload"zicompinit" as"completion" wait lucid
 zinit snippet https://github.com/zdharma/zinit/blob/master/_zinit
 
 zinit ice depth"1"
@@ -74,26 +74,23 @@ zinit light spaceship-prompt/spaceship-prompt
     export SPACESHIP_CHAR_COLOR_SECONDARY="$SPACESHIP_COLOR_NORMAL"
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
+zinit ice depth"1"
 zinit snippet OMZP::vi-mode
     export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=false
     export VI_MODE_SET_CURSOR=true
 
-# https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/autojump
-zinit snippet OMZP::autojump
-
-# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/rbenv
-zinit ice wait lucid
-zinit snippet OMZP::rbenv
-
-# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/jenv
-zinit ice wait lucid
-zinit snippet OMZP::jenv
+zinit ice depth"1"
+zinit snippet OMZL::completion.zsh
 
 # https://github.com/zsh-users/zsh-autosuggestions
-zinit ice depth"1"
+zinit ice atinit"zicompinit" depth"1"
 zinit light zsh-users/zsh-autosuggestions
     bindkey '^ ' autosuggest-execute
     bindkey -a '^ ' autosuggest-execute
+
+# https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/autojump
+zinit ice depth"1"
+zinit snippet OMZP::autojump
 
 # https://github.com/marzocchi/zsh-notify
 # To trick zsh-notify into thinking that it is a valid program
@@ -104,36 +101,48 @@ zinit light marzocchi/zsh-notify
     zstyle ':notify:*' error-sound "Sosumi"
     zstyle ':notify:*' success-sound "Blow"
 
-# https://github.com/Tarrasch/zsh-bd
-zinit ice depth"1"
-zinit light Tarrasch/zsh-bd
-
-# https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv
-zinit ice depth"1"
-zinit light MichaelAquilina/zsh-autoswitch-virtualenv
-
 # https://github.com/zdharma/fast-syntax-highlighting
+zinit ice depth"1" wait"1" lucid
 zinit light zdharma/fast-syntax-highlighting
 
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/rbenv
+zinit ice wait"2" lucid
+zinit snippet OMZP::rbenv
+#
 # https://github.com/Aloxaf/fzf-tab
-zinit ice depth"1" atinit"zpcompinit" wait lucid
+# tab
+local fzf_bindkey="bindkey \"^I\" expand-or-complete;"
+fzf_bindkey="${fzf_bindkey}bindkey -a \"^I\" expand-or-complete;"
+# ctrl-/
+fzf_bindkey="${fzf_bindkey}bindkey \"^_\" fzf-tab-complete;"
+fzf_bindkey="${fzf_bindkey}bindkey -a \"^_\" fzf-tab-complete;"
+zinit ice depth"1" atinit"zicompinit" \
+          atload"${fzf_bindkey}" \
+          wait"2" lucid
 zinit light Aloxaf/fzf-tab
     zstyle ':fzf-tab:complete:ls*:*' fzf-preview 'bat -n --color=auto $realpath'
     zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'bat -n --color=auto $realpath'
-    zstyle ':fzf-tab:*' fzf-bindings 'ctrl-space:toggle+down' 'bspace:backward-delete-char/eof' 'space:accept'
+    zstyle ':fzf-tab:*' fzf-bindings 'bspace:backward-delete-char/eof' 'ctrl-space:toggle+down' 'ctrl-/:toggle-preview'
+
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/jenv
+zinit ice wait"5" lucid
+zinit snippet OMZP::jenv
+
+# https://github.com/Tarrasch/zsh-bd
+zinit ice depth"1" wait"5" lucid
+zinit light Tarrasch/zsh-bd
+
+# https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv
+zinit ice depth"1" wait"5" lucid
+zinit light MichaelAquilina/zsh-autoswitch-virtualenv
 
 # https://github.com/C-uo/zsh-nodenv
-zinit ice depth"1" wait lucid
+zinit ice depth"1" atload"zicompinit" wait"2" lucid
 zinit light C-uo/zsh-nodenv
 
 # https://github.com/ptavares/zsh-direnv
-zinit ice wait lucid
+zinit ice depth"1" wait"2" lucid
 zinit load ptavares/zsh-direnv
-
-# https://github.com/rhysd/zsh-bundle-exec
-zinit load rhysd/zsh-bundle-exec
-    export BUNDLE_EXEC_GEMFILE_CURRENT_DIR_ONLY=yes
-    export BUNDLE_EXEC_RUBY_COMMAND=${HOME}
 
 
 
@@ -141,35 +150,57 @@ zinit load rhysd/zsh-bundle-exec
 # ===============
 
 # https://github.com/gradle/gradle-completion
-zinit ice depth"1" as"completion" wait lucid
+zinit ice depth"1" atload"zicompinit" as"completion" wait"2" lucid
 zinit light gradle/gradle-completion
 
 # https://docs.docker.com/compose/completion
-zinit ice depth"1" atinit"zpcompinit" as"completion" wait lucid
+zinit ice depth"1" atload"zicompinit" as"completion" wait"2" lucid
 zinit snippet https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose
 
-# https://github.com/chunleng/_kubectl
-zinit ice atinit"zpcompinit" as"completion" wait lucid
-zinit light chunleng/_kubectl
-
-# https://github.com/zsh-users/zsh-completions/blob/master/src/_rails 
-zinit ice atinit"zpcompinit" as"completion" wait lucid
+# https://github.com/zsh-users/zsh-completions/blob/master/src/_rails
+zinit ice depth"1" atload"zicompinit" as"completion" wait"2" lucid
 zinit snippet https://github.com/zsh-users/zsh-completions/blob/master/src/_rails
 
+# https://github.com/zsh-users/zsh-completions/blob/master/src/_bundle
+zinit ice depth"1" atload"zicompinit" as"completion" wait"2" lucid
+zinit snippet https://github.com/zsh-users/zsh-completions/blob/master/src/_bundle
 
+# Local zle
+# ==========
+
+# TODO make a plugin out of this
+# TODO unable to clear multiple lines
+function clean-history-by-buffer {
+  local regex=$BUFFER
+  regex=$(sed "s/\([\\/[!.*]\)/\\\\\1/g" <<< $BUFFER)
+  sed "/^${regex}\$/d" $HISTFILE > ${HISTFILE}.tmp
+  mv ${HISTFILE}.tmp ${HISTFILE}
+  BUFFER=
+  zle history-beginning-search-backward
+}
+zle -N clean-history-by-buffer
+bindkey "^H" clean-history-by-buffer
+bindkey -a "^H" clean-history-by-buffer
 
 # Key Bindings
 # =============
 
 # Bug? for some normal binding is needed first before `-a` works
-bindkey '^N' .history-search-forward
-bindkey -a '^N' .history-search-forward
-bindkey '^P' .history-search-backward
-bindkey -a '^P' .history-search-backward
-bindkey '^T' .push-input
-bindkey -a '^T' .push-input
-bindkey '^U' .backward-kill-line
-bindkey -a '^U' .backward-kill-line
+# ctrl-n
+bindkey '^N' history-beginning-search-forward
+bindkey -a '^N' history-beginning-search-forward
+# ctrl-p
+bindkey '^P' history-beginning-search-backward
+bindkey -a '^P' history-beginning-search-backward
+# ctrl-t
+bindkey '^T' push-input
+bindkey -a '^T' push-input
+# ctrl-u
+bindkey '^U' backward-kill-line
+bindkey -a '^U' backward-kill-line
+# shift-tab
+bindkey '^[[Z' reverse-menu-complete
+bindkey -a '^[[Z' reverse-menu-complete
 
 # Local Settings
 # ===============
@@ -186,6 +217,20 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR="nvim"
 
+# Expand History Stored
+export HISTSIZE=50000
+export SAVEHIST=$HISTSIZE
+
+# setopt references: https://zsh.sourceforge.io/Doc/Release/Options.html
+# Don't store duplicate history and spaces
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt inc_append_history_time
+
+# Stop the annoying sound
+setopt nobeep
+
 export FZF_DEFAULT_COMMAND='fd --type f'
 
 # Ctrl-w deletes alphanumeric and the following characters
@@ -195,15 +240,19 @@ alias vim="nvim";
 alias v="nvim";
 alias g="git"
 alias k="kubectl"
+alias be="bundle exec"
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
 
-eval "$(goenv init -)"
-
-# source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-# source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+# Custom loading other command
+local exec_commands="eval \"$(pyenv init --path)\";"
+exec_commands="${exec_commands}source \"$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc\";"
+exec_commands="${exec_commands}source \"$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc\";"
+exec_commands="${exec_commands}source <(kubectl completion zsh);"
+zinit ice atload"${exec_commands}" \
+          wait"2" lucid
+zinit light zdharma/null
 
 # Android Development
 if [ -d $HOME/Library/Android/sdk ]; then
