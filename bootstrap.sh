@@ -10,8 +10,7 @@ grep -q $CURRENT_ZSH /etc/shells || echo $CURRENT_ZSH | sudo tee -a /etc/shells 
 
 ln -sfn ${APP_PATH}/zshrc ${HOME}/.zshrc
 
-# Install jobber
-mkdir -p ${HOME}/.jobber-logs
-ln -sfn ${APP_PATH}/jobber/jobber.yaml ${HOME}/.jobber
-ln -sfn ${APP_PATH}/jobber/notify.sh ${HOME}/.jobber-notify.sh
-jobber reload
+# cron
+ln -sfn ${APP_PATH}/cron ${HOME}/.cron-script
+export > ${APP_PATH}/cron/envfile
+crontab < ${APP_PATH}/crontab
