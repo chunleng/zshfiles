@@ -1,3 +1,3 @@
 0 * * * *  ${HOME}/.cron-script/run.sh pip-update
 20 * * * *  ${HOME}/.cron-script/run.sh npm-update
-40 * * * *  ${HOME}/.cron-script/run.sh brew-update
+40 * * * *  ${HOME}/.cron-script/run.sh homebrew-update

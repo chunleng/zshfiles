@@ -2,4 +2,4 @@
 
 set -eu
 
-npm update -g
+npm update -g --loglevel error
