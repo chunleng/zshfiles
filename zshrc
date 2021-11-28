@@ -27,12 +27,12 @@ zinit light spaceship-prompt/spaceship-prompt
     export SPACESHIP_GIT_STATUS_ADDED="+"
     export SPACESHIP_GIT_STATUS_MODIFIED="*"
     export SPACESHIP_GIT_STATUS_RENAMED="→"
-    export SPACESHIP_GIT_STATUS_DELETED=""
-    export SPACESHIP_GIT_STATUS_STASHED="ﰤ "
-    export SPACESHIP_GIT_STATUS_UNMERGED=" "
-    export SPACESHIP_GIT_STATUS_AHEAD="裏"
-    export SPACESHIP_GIT_STATUS_BEHIND="裏"
-    export SPACESHIP_GIT_STATUS_DIVERGED="裏"
+    export SPACESHIP_GIT_STATUS_DELETED=""
+    export SPACESHIP_GIT_STATUS_STASHED="ﲐ"
+    export SPACESHIP_GIT_STATUS_UNMERGED=""
+    export SPACESHIP_GIT_STATUS_AHEAD=""
+    export SPACESHIP_GIT_STATUS_BEHIND=""
+    export SPACESHIP_GIT_STATUS_DIVERGED=""
     export SPACESHIP_DOCKER_PREFIX=""
     export SPACESHIP_DOCKER_SYMBOL=" "
     export SPACESHIP_DOCKER_VERBOSE=false
@@ -170,22 +170,21 @@ zinit snippet https://github.com/zsh-users/zsh-completions/blob/master/src/_bund
 
 # TODO make a plugin out of this
 # TODO unable to clear multiple lines
-function clean-history-by-buffer {
-  local regex=$BUFFER
-  regex=$(sed "s/\([\\/[!.*]\)/\\\\\1/g" <<< $BUFFER)
-  sed "/^${regex}\$/d" $HISTFILE > ${HISTFILE}.tmp
-  mv ${HISTFILE}.tmp ${HISTFILE}
-  BUFFER=
-  zle history-beginning-search-backward
-}
-zle -N clean-history-by-buffer
-bindkey "^H" clean-history-by-buffer
-bindkey -a "^H" clean-history-by-buffer
+# function clean-history-by-buffer {
+#   local regex=$BUFFER
+#   regex=$(sed "s/\([\\/[!.*]\)/\\\\\1/g" <<< $BUFFER)
+#   sed "/^${regex}\$/d" $HISTFILE > ${HISTFILE}.tmp
+#   mv ${HISTFILE}.tmp ${HISTFILE}
+#   BUFFER=
+#   zle history-beginning-search-backward
+# }
+# zle -N clean-history-by-buffer
+# bindkey "^H" clean-history-by-buffer
+# bindkey -a "^H" clean-history-by-buffer
 
 # Key Bindings
 # =============
 
-# Bug? for some normal binding is needed first before `-a` works
 # ctrl-n
 bindkey '^N' history-beginning-search-forward
 bindkey -a '^N' history-beginning-search-forward
@@ -210,6 +209,10 @@ if [ -d "/usr/local/opt/coreutils/libexec/gnubin" ]; then
     ADD_PATH="/usr/local/opt/coreutils/libexec/gnubin:${ADD_PATH}"
 fi
 
+if [ -d "/usr/local/opt/findutils/libexec/gnubin" ]; then
+    ADD_PATH="/usr/local/opt/findutils/libexec/gnubin:${ADD_PATH}"
+fi
+
 export PATH=${ADD_PATH}:${PATH}
 
 # Shell Colorscheme
@@ -232,6 +235,7 @@ setopt inc_append_history_time
 setopt nobeep
 
 export FZF_DEFAULT_COMMAND='fd --type f'
+export RIPGREP_CONFIG_PATH=${HOME}/.ripgreprc
 
 # Ctrl-w deletes alphanumeric and the following characters
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
@@ -239,8 +243,10 @@ alias ls="ls --color --group-directories-first"
 alias vim="nvim";
 alias v="nvim";
 alias g="git"
+alias gg="lazygit"
 alias k="kubectl"
 alias be="bundle exec"
+alias r="rg"
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"

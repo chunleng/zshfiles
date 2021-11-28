@@ -9,6 +9,8 @@ grep -q $CURRENT_ZSH /etc/shells || echo $CURRENT_ZSH | sudo tee -a /etc/shells 
 [ $SHELL = `which zsh` ] || chsh -s $CURRENT_ZSH
 
 ln -sfn ${APP_PATH}/zshrc ${HOME}/.zshrc
+ln -sfn ${APP_PATH}/config/ripgreprc ${HOME}/.ripgreprc
+ln -sfn ${APP_PATH}/config/rgignore ${HOME}/.rgignore
 
 # cron
 ln -sfn ${APP_PATH}/cron ${HOME}/.cron-script
