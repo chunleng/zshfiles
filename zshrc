@@ -1,3 +1,16 @@
+if [ $(uname -m) = 'arm64' ]; then
+    export PATH=/opt/homebrew/bin/:${PATH}
+fi
+
+if [ -d "$(brew --prefix)/opt/coreutils/libexec/gnubin" ]; then
+    ADD_PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:${ADD_PATH}"
+fi
+if [ -d "$(brew --prefix)/opt/findutils/libexec/gnubin" ]; then
+    ADD_PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:${ADD_PATH}"
+fi
+export PATH=${ADD_PATH}:${PATH}
+
+
 source $(brew --prefix)/Cellar/zinit/*/zinit.zsh
 
 # https://github.com/zdharma-continuum/zinit/blob/master/_zinit
@@ -200,20 +213,6 @@ bindkey -a '^U' backward-kill-line
 # shift-tab
 bindkey '^[[Z' reverse-menu-complete
 bindkey -a '^[[Z' reverse-menu-complete
-
-# Local Settings
-# ===============
-
-ADD_PATH="/usr/local/bin"
-if [ -d "/usr/local/opt/coreutils/libexec/gnubin" ]; then
-    ADD_PATH="/usr/local/opt/coreutils/libexec/gnubin:${ADD_PATH}"
-fi
-
-if [ -d "/usr/local/opt/findutils/libexec/gnubin" ]; then
-    ADD_PATH="/usr/local/opt/findutils/libexec/gnubin:${ADD_PATH}"
-fi
-
-export PATH=${ADD_PATH}:${PATH}
 
 # Shell Colorscheme
 export LC_ALL=en_US.UTF-8
