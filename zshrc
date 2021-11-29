@@ -1,8 +1,8 @@
 source $(brew --prefix)/Cellar/zinit/*/zinit.zsh
 
-# https://github.com/zdharma/zinit/blob/master/_zinit
+# https://github.com/zdharma-continuum/zinit/blob/master/_zinit
 zinit ice depth"1" atload"zicompinit" as"completion" wait lucid
-zinit snippet https://github.com/zdharma/zinit/blob/master/_zinit
+zinit snippet https://github.com/zdharma-continuum/zinit/blob/main/_zinit
 
 zinit ice depth"1"
 zinit light spaceship-prompt/spaceship-prompt
@@ -101,9 +101,9 @@ zinit light marzocchi/zsh-notify
     zstyle ':notify:*' error-sound "Sosumi"
     zstyle ':notify:*' success-sound "Blow"
 
-# https://github.com/zdharma/fast-syntax-highlighting
+# https://github.com/zdharma-continuum/fast-syntax-highlighting
 zinit ice depth"1" wait"1" lucid
-zinit light zdharma/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/rbenv
 zinit ice wait"2" lucid
@@ -258,7 +258,7 @@ exec_commands="${exec_commands}source \"$(brew --prefix)/Caskroom/google-cloud-s
 exec_commands="${exec_commands}source <(kubectl completion zsh);"
 zinit ice atload"${exec_commands}" \
           wait"2" lucid
-zinit light zdharma/null
+zinit light zdharma-continuum/null
 
 # Android Development
 if [ -d $HOME/Library/Android/sdk ]; then
