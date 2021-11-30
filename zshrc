@@ -181,6 +181,59 @@ zinit snippet https://github.com/zsh-users/zsh-completions/blob/master/src/_bund
 # Local zle
 # ==========
 
+function gitcheckall {
+    check_targets=(`find ${1:-.} -name '.git' | xargs -n 1 dirname`)
+
+    echo "Update git remote..."
+    wait_list=()
+    for target in $check_targets; do
+        git -C ${target} remote update > /dev/null 2>&1 & wait_list+=($!)
+    done
+
+    for i in $wait_list; do
+        wait $i
+    done
+
+    clear
+    echo "Check git..."
+    for target in $check_targets; do
+        if [ $(git -C ${target} rev-parse --abbrev-ref HEAD) = "HEAD" ]; then
+            # ignore detached head
+            continue
+        fi
+        _gitcheck $target
+    done
+}
+
+function _gitcheck {
+    target=$1
+
+
+    upstream='@{u}'
+    local_hash=`git -C ${target} rev-parse @`
+    remote_hash=`git -C ${target} rev-parse "${upstream}"`
+    base_hash=`git -C ${target} merge-base @ "${upstream}"`
+    git_status=`git -C ${target} status -s`
+
+    if [ ${local_hash} != ${remote_hash} ] || [ "${git_status}" != "" ]; then
+        echo "\n>> ${target}:"
+
+        if [ "${git_status}" != "" ]; then
+            echo $git_status
+        fi
+
+        if [ ${local_hash} = ${remote_hash} ]; then
+            continue
+        elif [ ${local_hash} = ${base_hash} ]; then
+            echo "Need to pull"
+        elif [ ${remote_hash} = ${base_hash} ]; then
+            echo "Need to push"
+        else
+            echo "Diverged"
+        fi
+    fi
+}
+
 # TODO make a plugin out of this
 # TODO unable to clear multiple lines
 # function clean-history-by-buffer {
