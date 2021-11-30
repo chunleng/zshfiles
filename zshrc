@@ -4,9 +4,13 @@ fi
 
 if [ -d "$(brew --prefix)/opt/coreutils/libexec/gnubin" ]; then
     ADD_PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:${ADD_PATH}"
+    alias ls="ls --color --group-directories-first"
 fi
 if [ -d "$(brew --prefix)/opt/findutils/libexec/gnubin" ]; then
     ADD_PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:${ADD_PATH}"
+fi
+if [ -d "$(brew --prefix)/opt/gnu-sed/libexec/gnubin" ]; then
+    ADD_PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:${ADD_PATH}"
 fi
 export PATH=${ADD_PATH}:${PATH}
 
@@ -234,6 +238,13 @@ function _gitcheck {
     fi
 }
 
+function sedreplace {
+    sed_string=$1
+    target=${2:-.}
+
+    fd ${target} --type=f --exec sed -i "${sed_string}"
+}
+
 # TODO make a plugin out of this
 # TODO unable to clear multiple lines
 # function clean-history-by-buffer {
@@ -291,7 +302,6 @@ export RIPGREP_CONFIG_PATH=${HOME}/.ripgreprc
 
 # Ctrl-w deletes alphanumeric and the following characters
 export WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
-alias ls="ls --color --group-directories-first"
 alias vim="nvim";
 alias v="nvim";
 alias g="git"
