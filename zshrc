@@ -1,5 +1,5 @@
 if [ $(uname -m) = 'arm64' ]; then
-    export PATH=/opt/homebrew/bin/:${PATH}
+    export PATH=/opt/homebrew/bin:${PATH}
 fi
 
 if [ -d "$(brew --prefix)/opt/coreutils/libexec/gnubin" ]; then
