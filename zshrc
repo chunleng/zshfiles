@@ -153,10 +153,6 @@ zinit light Tarrasch/zsh-bd
 zinit ice depth"1" wait"5" lucid
 zinit light MichaelAquilina/zsh-autoswitch-virtualenv
 
-# https://github.com/C-uo/zsh-nodenv
-zinit ice depth"1" atload"zicompinit" wait"2" lucid
-zinit light C-uo/zsh-nodenv
-
 # https://github.com/ptavares/zsh-direnv
 zinit ice depth"1" wait"2" lucid
 zinit load ptavares/zsh-direnv
@@ -315,6 +311,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 
 # Custom loading other command
 local exec_commands="eval \"$(pyenv init --path)\";"
+exec_commands="${exec_commands}eval `nodenv init - zsh`;"
 exec_commands="${exec_commands}source \"$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc\";"
 exec_commands="${exec_commands}source \"$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc\";"
 exec_commands="${exec_commands}source <(kubectl completion zsh);"
