@@ -15,6 +15,9 @@ fi
 if [ -d "${HOME}/.cargo/bin" ]; then
     ADD_PATH="${HOME}/.cargo/bin:${ADD_PATH}"
 fi
+if [ -d "/usr/local/opt/ruby/bin" ]; then
+    ADD_PATH="/usr/local/opt/ruby/bin:${ADD_PATH}"
+fi
 export PATH=${ADD_PATH}:${PATH}
 
 
