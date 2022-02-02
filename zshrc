@@ -259,6 +259,17 @@ function sedreplace {
 # bindkey "^H" clean-history-by-buffer
 # bindkey -a "^H" clean-history-by-buffer
 
+function run-parallel {
+    for command in "$@"; do
+        eval "$command &"
+    done
+    function exit_run_parallel {
+        trap "exit_run_parallel" INT
+        fg
+    }
+    exit_run_parallel
+}
+
 # Key Bindings
 # =============
 
