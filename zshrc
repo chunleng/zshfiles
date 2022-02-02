@@ -1,5 +1,5 @@
 if [ $(uname -m) = 'arm64' ]; then
-    export PATH=/opt/homebrew/bin/:${PATH}
+    export PATH=/opt/homebrew/bin:${PATH}
 fi
 
 if [ -d "$(brew --prefix)/opt/coreutils/libexec/gnubin" ]; then
@@ -11,6 +11,9 @@ if [ -d "$(brew --prefix)/opt/findutils/libexec/gnubin" ]; then
 fi
 if [ -d "$(brew --prefix)/opt/gnu-sed/libexec/gnubin" ]; then
     ADD_PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:${ADD_PATH}"
+fi
+if [ -d "${HOME}/.cargo/bin" ]; then
+    ADD_PATH="${HOME}/.cargo/bin:${ADD_PATH}"
 fi
 export PATH=${ADD_PATH}:${PATH}
 
@@ -153,10 +156,6 @@ zinit light Tarrasch/zsh-bd
 zinit ice depth"1" wait"5" lucid
 zinit light MichaelAquilina/zsh-autoswitch-virtualenv
 
-# https://github.com/C-uo/zsh-nodenv
-zinit ice depth"1" atload"zicompinit" wait"2" lucid
-zinit light C-uo/zsh-nodenv
-
 # https://github.com/ptavares/zsh-direnv
 zinit ice depth"1" wait"2" lucid
 zinit load ptavares/zsh-direnv
@@ -181,6 +180,12 @@ zinit snippet https://github.com/zsh-users/zsh-completions/blob/master/src/_rail
 # https://github.com/zsh-users/zsh-completions/blob/master/src/_bundle
 zinit ice depth"1" atload"zicompinit" as"completion" wait"2" lucid
 zinit snippet https://github.com/zsh-users/zsh-completions/blob/master/src/_bundle
+
+# rust cargo
+if [ -d "${HOME}/.cargo/bin" ]; then
+    zinit ice depth"1" atload"zicompinit" as"completion" wait"2" lucid
+    zinit snippet $(rustc --print sysroot)/share/zsh/site-functions/_cargo
+fi
 
 # Local zle
 # ==========
@@ -326,9 +331,11 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 
 # Custom loading other command
 local exec_commands="eval \"$(pyenv init --path)\";"
+exec_commands="${exec_commands}eval `nodenv init - zsh`;"
 exec_commands="${exec_commands}source \"$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc\";"
 exec_commands="${exec_commands}source \"$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc\";"
 exec_commands="${exec_commands}source <(kubectl completion zsh);"
+exec_commands="${exec_commands}rustup completions zsh > ~/.zinit/completions/_rustup;"
 zinit ice atload"${exec_commands}" \
           wait"2" lucid
 zinit light zdharma-continuum/null
