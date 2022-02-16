@@ -120,9 +120,10 @@ zinit snippet OMZP::autojump
 export TERM_PROGRAM='Apple_Terminal'
 zinit ice depth"1"
 zinit light marzocchi/zsh-notify
-    zstyle ':notify:*' command-complete-timeout 10
+    zstyle ':notify:*' command-complete-timeout 30
     zstyle ':notify:*' error-sound "Sosumi"
     zstyle ':notify:*' success-sound "Blow"
+    zstyle ':notify:*' blacklist-regex "nvim"
 
 # https://github.com/zdharma-continuum/fast-syntax-highlighting
 zinit ice depth"1" wait"1" lucid
