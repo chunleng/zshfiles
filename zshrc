@@ -1,27 +1,29 @@
+brew_prefix=/usr/local
 if [ $(uname -m) = 'arm64' ]; then
-    export PATH=/opt/homebrew/bin:${PATH}
+    brew_prefix=/opt/homebrew
+    export PATH=${brew_prefix}/bin:${PATH}
 fi
 
-if [ -d "$(brew --prefix)/opt/coreutils/libexec/gnubin" ]; then
-    ADD_PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:${ADD_PATH}"
+if [ -d "${brew_prefix}/opt/coreutils/libexec/gnubin" ]; then
+    ADD_PATH="${brew_prefix}/opt/coreutils/libexec/gnubin:${ADD_PATH}"
     alias ls="ls --color --group-directories-first"
 fi
-if [ -d "$(brew --prefix)/opt/findutils/libexec/gnubin" ]; then
-    ADD_PATH="$(brew --prefix)/opt/findutils/libexec/gnubin:${ADD_PATH}"
+if [ -d "${brew_prefix}/opt/findutils/libexec/gnubin" ]; then
+    ADD_PATH="${brew_prefix}/opt/findutils/libexec/gnubin:${ADD_PATH}"
 fi
-if [ -d "$(brew --prefix)/opt/gnu-sed/libexec/gnubin" ]; then
-    ADD_PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:${ADD_PATH}"
+if [ -d "${brew_prefix}/opt/gnu-sed/libexec/gnubin" ]; then
+    ADD_PATH="${brew_prefix}/opt/gnu-sed/libexec/gnubin:${ADD_PATH}"
 fi
 if [ -d "${HOME}/.cargo/bin" ]; then
     ADD_PATH="${HOME}/.cargo/bin:${ADD_PATH}"
 fi
-if [ -d "/usr/local/opt/ruby/bin" ]; then
-    ADD_PATH="/usr/local/opt/ruby/bin:${ADD_PATH}"
+if [ -d "${brew_prefix}/opt/ruby/bin" ]; then
+    ADD_PATH="${brew_prefix}/opt/ruby/bin:${ADD_PATH}"
 fi
 export PATH=${ADD_PATH}:${PATH}
 
 
-source $(brew --prefix)/Cellar/zinit/*/zinit.zsh
+source ${brew_prefix}/Cellar/zinit/*/zinit.zsh
 
 # https://github.com/zdharma-continuum/zinit/blob/master/_zinit
 zinit ice depth"1" atload"zicompinit" as"completion" wait lucid
@@ -111,14 +113,14 @@ zinit light zsh-users/zsh-autosuggestions
     bindkey '^ ' autosuggest-execute
     bindkey -a '^ ' autosuggest-execute
 
-# https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/autojump
-zinit ice depth"1"
-zinit snippet OMZP::autojump
+# autojump setup
+zinit ice depth"1" wait"1" lucid
+zinit snippet ${brew_prefix}/etc//profile.d/autojump.sh
 
 # https://github.com/marzocchi/zsh-notify
 # To trick zsh-notify into thinking that it is a valid program
 export TERM_PROGRAM='Apple_Terminal'
-zinit ice depth"1"
+zinit ice depth"1" wait"1" lucid
 zinit light marzocchi/zsh-notify
     zstyle ':notify:*' command-complete-timeout 30
     zstyle ':notify:*' error-sound "Sosumi"
@@ -132,9 +134,8 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/rbenv
 zinit ice wait"2" lucid
 zinit snippet OMZP::rbenv
-#
+
 # https://github.com/Aloxaf/fzf-tab
-# tab
 local fzf_bindkey="bindkey \"^I\" expand-or-complete;"
 fzf_bindkey="${fzf_bindkey}bindkey -a \"^I\" expand-or-complete;"
 # ctrl-/
@@ -152,12 +153,12 @@ zinit light Aloxaf/fzf-tab
 zinit ice wait"5" lucid
 zinit snippet OMZP::jenv
 
-# https://github.com/Tarrasch/zsh-bd
+# # https://github.com/Tarrasch/zsh-bd
 zinit ice depth"1" wait"5" lucid
 zinit light Tarrasch/zsh-bd
 
 # https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv
-zinit ice depth"1" wait"5" lucid
+zinit ice depth"1"
 zinit light MichaelAquilina/zsh-autoswitch-virtualenv
 
 # https://github.com/ptavares/zsh-direnv
@@ -188,7 +189,7 @@ zinit snippet https://github.com/zsh-users/zsh-completions/blob/master/src/_bund
 # rust cargo
 if [ -d "${HOME}/.cargo/bin" ]; then
     zinit ice depth"1" atload"zicompinit" as"completion" wait"2" lucid
-    zinit snippet $(rustc --print sysroot)/share/zsh/site-functions/_cargo
+    zinit snippet ${HOME}/.rustup/toolchains/*/share/zsh/site-functions/_cargo
 fi
 
 # Local zle
@@ -298,7 +299,6 @@ bindkey -a '^U' backward-kill-line
 bindkey '^[[Z' reverse-menu-complete
 bindkey -a '^[[Z' reverse-menu-complete
 
-# Shell Colorscheme
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR="nvim"
@@ -334,14 +334,14 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 # Custom loading other command
-local exec_commands="eval \"$(pyenv init --path)\";"
-exec_commands="${exec_commands}eval `nodenv init - zsh`;"
-exec_commands="${exec_commands}source \"$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc\";"
-exec_commands="${exec_commands}source \"$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc\";"
+local exec_commands="eval \"\$(pyenv init --path)\";"
+exec_commands="${exec_commands}eval \"\$(nodenv init - zsh)\";"
+exec_commands="${exec_commands}source \"${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc\";"
+exec_commands="${exec_commands}source \"${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc\";"
 exec_commands="${exec_commands}source <(kubectl completion zsh);"
 exec_commands="${exec_commands}rustup completions zsh > ~/.zinit/completions/_rustup;"
 zinit ice atload"${exec_commands}" \
-          wait"2" lucid
+          wait"5" lucid
 zinit light zdharma-continuum/null
 
 # Android Development
