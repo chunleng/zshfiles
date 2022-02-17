@@ -157,10 +157,6 @@ zinit snippet OMZP::jenv
 zinit ice depth"1" wait"5" lucid
 zinit light Tarrasch/zsh-bd
 
-# https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv
-zinit ice depth"1"
-zinit light MichaelAquilina/zsh-autoswitch-virtualenv
-
 # https://github.com/ptavares/zsh-direnv
 zinit ice depth"1" wait"2" lucid
 zinit load ptavares/zsh-direnv
