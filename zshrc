@@ -1,3 +1,8 @@
+# Enable Powerlevel10k instant prompt
+if [[ -r "${HOME}/.cache/p10k-instant-prompt-${%n}.zsh" ]]; then
+  source "${HOME}/.cache/p10k-instant-prompt-${%n}.zsh"
+fi
+
 brew_prefix=/usr/local
 if [ $(uname -m) = 'arm64' ]; then
     brew_prefix=/opt/homebrew
@@ -29,74 +34,9 @@ source ${brew_prefix}/Cellar/zinit/*/zinit.zsh
 zinit ice depth"1" atload"zicompinit" as"completion" wait lucid
 zinit snippet https://github.com/zdharma-continuum/zinit/blob/main/_zinit
 
-zinit ice depth"1"
-zinit light spaceship-prompt/spaceship-prompt
-    export SPACESHIP_PROMPT_ORDER=( dir git aws gcloud kubectl docker pyenv venv ruby node package \
-        line_sep time exec_time exit_code \
-        line_sep jobs char )
-    export SPACESHIP_COLOR_NORMAL="245"
-    export SPACESHIP_COLOR_HIDDEN="239"
-
-    export SPACESHIP_DIR_COLOR="$SPACESHIP_COLOR_NORMAL"
-    export SPACESHIP_TIME_SHOW=true
-    export SPACESHIP_TIME_COLOR="$SPACESHIP_COLOR_HIDDEN"
-    export SPACESHIP_TIME_PREFIX=""
-    export SPACESHIP_GIT_COLOR="167" # orange-y red
-    export SPACESHIP_GIT_PREFIX=""
-    export SPACESHIP_GIT_BRANCH_PREFIX=" "
-    export SPACESHIP_GIT_BRANCH_COLOR="$SPACESHIP_GIT_COLOR"
-    export SPACESHIP_GIT_STATUS_COLOR="$SPACESHIP_GIT_COLOR"
-    export SPACESHIP_GIT_STATUS_PREFIX="%F{$SPACESHIP_GIT_COLOR}"
-    export SPACESHIP_GIT_STATUS_SUFFIX="%F{$SPACESHIP_GIT_COLOR}"
-    export SPACESHIP_GIT_STATUS_UNTRACKED="?"
-    export SPACESHIP_GIT_STATUS_ADDED="+"
-    export SPACESHIP_GIT_STATUS_MODIFIED="*"
-    export SPACESHIP_GIT_STATUS_RENAMED="→"
-    export SPACESHIP_GIT_STATUS_DELETED=""
-    export SPACESHIP_GIT_STATUS_STASHED="ﲐ"
-    export SPACESHIP_GIT_STATUS_UNMERGED=""
-    export SPACESHIP_GIT_STATUS_AHEAD=""
-    export SPACESHIP_GIT_STATUS_BEHIND=""
-    export SPACESHIP_GIT_STATUS_DIVERGED=""
-    export SPACESHIP_DOCKER_PREFIX=""
-    export SPACESHIP_DOCKER_SYMBOL=" "
-    export SPACESHIP_DOCKER_VERBOSE=false
-    export SPACESHIP_DOCKER_COLOR="38" # cyan
-    export SPACESHIP_KUBECTL_SHOW=true
-    export SPACESHIP_KUBECTL_SYMBOL="ﴱ "
-    export SPACESHIP_KUBECTL_PREFIX=""
-    export SPACESHIP_KUBECTL_COLOR="38" # cyan
-    export SPACESHIP_KUBECONTEXT_NAMESPACE_SHOW=true
-    export SPACESHIP_KUBECONTEXT_COLOR="38" # cyan
-    export SPACESHIP_KUBECTL_VERSION_SHOW=false
-    export SPACESHIP_AWS_PREFIX=""
-    export SPACESHIP_AWS_SYMBOL=" "
-    export SPACESHIP_GCLOUD_SHOW=false # hide by default
-    export SPACESHIP_GCLOUD_PREFIX=""
-    export SPACESHIP_GCLOUD_SYMBOL=" "
-    export SPACESHIP_PYENV_SYMBOL=" "
-    export SPACESHIP_PYENV_COLOR="26" # blue
-    export SPACESHIP_PYENV_PREFIX=""
-    export SPACESHIP_VENV_COLOR="$SPACESHIP_PYENV_COLOR"
-    export SPACESHIP_VENV_PREFIX="%F{$SPACESHIP_PYENV_COLOR}"
-    export SPACESHIP_VENV_SUFFIX="%F{$SPACESHIP_PYENV_COLOR}"
-    export SPACESHIP_RUBY_COLOR="124" # dark red
-    export SPACESHIP_RUBY_SYMBOL=" "
-    export SPACESHIP_NODE_SYMBOL=" "
-    export SPACESHIP_NODE_COLOR="29" # green
-    export SPACESHIP_NODE_PREFIX=""
-    export SPACESHIP_PACKAGE_SYMBOL=""
-    export SPACESHIP_PACKAGE_PREFIX="%F{$SPACESHIP_NODE_COLOR}"
-    export SPACESHIP_PACKAGE_SUFFIX="%F{$SPACESHIP_NODE_COLOR}"
-    export SPACESHIP_PACKAGE_COLOR="$SPACESHIP_NODE_COLOR"
-    export SPACESHIP_EXEC_TIME_COLOR="$SPACESHIP_COLOR_NORMAL"
-    export SPACESHIP_EXEC_TIME_PREFIX="%F{$SPACESHIP_EXEC_TIME_COLOR}祥"
-    export SPACESHIP_EXEC_TIME_ELAPSED=10
-    export SPACESHIP_EXIT_CODE_SHOW=true
-    export SPACESHIP_CHAR_SYMBOL="→ "
-    export SPACESHIP_CHAR_SYMBOL_SECONDARY=" "
-    export SPACESHIP_CHAR_COLOR_SUCCESS="$SPACESHIP_COLOR_NORMAL"
-    export SPACESHIP_CHAR_COLOR_SECONDARY="$SPACESHIP_COLOR_NORMAL"
+# https://github.com/romkatv/powerlevel10k
+zinit ice depth"1" atload"[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh"
+zinit light romkatv/powerlevel10k
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vi-mode
 zinit ice depth"1"
@@ -114,8 +54,8 @@ zinit light zsh-users/zsh-autosuggestions
     bindkey -a '^ ' autosuggest-execute
 
 # autojump setup
-zinit ice depth"1" wait"1" lucid
-zinit snippet ${brew_prefix}/etc//profile.d/autojump.sh
+zinit ice depth"1" lucid
+zinit snippet ${brew_prefix}/etc/profile.d/autojump.sh
 
 # https://github.com/marzocchi/zsh-notify
 # To trick zsh-notify into thinking that it is a valid program
@@ -150,16 +90,16 @@ zinit light Aloxaf/fzf-tab
     zstyle ':fzf-tab:*' fzf-bindings 'bspace:backward-delete-char/eof' 'ctrl-space:toggle+down' 'ctrl-/:toggle-preview'
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/jenv
-zinit ice wait"5" lucid
+zinit ice wait"0" lucid
 zinit snippet OMZP::jenv
 
-# # https://github.com/Tarrasch/zsh-bd
-zinit ice depth"1" wait"5" lucid
-zinit light Tarrasch/zsh-bd
-
 # https://github.com/ptavares/zsh-direnv
-zinit ice depth"1" wait"2" lucid
+zinit ice depth"1" wait"0" lucid
 zinit load ptavares/zsh-direnv
+
+# # https://github.com/Tarrasch/zsh-bd
+zinit ice depth"1" wait"2" lucid
+zinit light Tarrasch/zsh-bd
 
 
 
@@ -167,24 +107,24 @@ zinit load ptavares/zsh-direnv
 # ===============
 
 # https://github.com/gradle/gradle-completion
-zinit ice depth"1" atload"zicompinit" as"completion" wait"2" lucid
+zinit ice depth"1" atload"zicompinit" as"completion" wait"1" lucid
 zinit light gradle/gradle-completion
 
 # https://docs.docker.com/compose/completion
-zinit ice depth"1" atload"zicompinit" as"completion" wait"2" lucid
+zinit ice depth"1" atload"zicompinit" as"completion" wait"1" lucid
 zinit snippet https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose
 
 # https://github.com/zsh-users/zsh-completions/blob/master/src/_rails
-zinit ice depth"1" atload"zicompinit" as"completion" wait"2" lucid
+zinit ice depth"1" atload"zicompinit" as"completion" wait"1" lucid
 zinit snippet https://github.com/zsh-users/zsh-completions/blob/master/src/_rails
 
 # https://github.com/zsh-users/zsh-completions/blob/master/src/_bundle
-zinit ice depth"1" atload"zicompinit" as"completion" wait"2" lucid
+zinit ice depth"1" atload"zicompinit" as"completion" wait"1" lucid
 zinit snippet https://github.com/zsh-users/zsh-completions/blob/master/src/_bundle
 
 # rust cargo
 if [ -d "${HOME}/.cargo/bin" ]; then
-    zinit ice depth"1" atload"zicompinit" as"completion" wait"2" lucid
+    zinit ice depth"1" atload"zicompinit" as"completion" wait"1" lucid
     zinit snippet ${HOME}/.rustup/toolchains/*/share/zsh/site-functions/_cargo
 fi
 
@@ -326,18 +266,18 @@ alias k="kubectl"
 alias be="bundle exec"
 alias r="rg"
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
 # Custom loading other command
-local exec_commands="eval \"\$(pyenv init --path)\";"
-exec_commands="${exec_commands}eval \"\$(nodenv init - zsh)\";"
-exec_commands="${exec_commands}source \"${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc\";"
+local exec_commands="source \"${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc\";"
 exec_commands="${exec_commands}source \"${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc\";"
 exec_commands="${exec_commands}source <(kubectl completion zsh);"
 exec_commands="${exec_commands}rustup completions zsh > ~/.zinit/completions/_rustup;"
-zinit ice atload"${exec_commands}" \
-          wait"5" lucid
+zinit ice atload"${exec_commands}" wait"1" lucid
+zinit light zdharma-continuum/null
+
+local exec_commands="eval \"\$(pyenv init --path)\";"
+exec_commands="${exec_commands}eval \"\$(pyenv init -)\";"
+exec_commands="${exec_commands}eval \"\$(nodenv init - zsh)\";"
+zinit ice atload"${exec_commands}" wait"0" lucid
 zinit light zdharma-continuum/null
 
 # Android Development
