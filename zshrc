@@ -48,6 +48,7 @@ zinit ice depth"1"
 zinit snippet OMZL::completion.zsh
 
 # https://github.com/zsh-users/zsh-autosuggestions
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 zinit ice atinit"zicompinit" depth"1"
 zinit light zsh-users/zsh-autosuggestions
     bindkey '^ ' autosuggest-execute
@@ -87,7 +88,7 @@ zinit ice depth"1" atinit"zicompinit" \
 zinit light Aloxaf/fzf-tab
     zstyle ':fzf-tab:complete:ls*:*' fzf-preview 'bat -n --color=auto $realpath'
     zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'bat -n --color=auto $realpath'
-    zstyle ':fzf-tab:*' fzf-bindings 'bspace:backward-delete-char/eof' 'ctrl-space:toggle+down' 'ctrl-/:toggle-preview'
+    zstyle ':fzf-tab:*' fzf-bindings 'bspace:backward-delete-char/eof' 'tab:toggle+down' 'ctrl-/:toggle-preview'
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/jenv
 zinit ice wait"0" lucid
@@ -95,7 +96,7 @@ zinit snippet OMZP::jenv
 
 # https://github.com/ptavares/zsh-direnv
 zinit ice depth"1" wait"0" lucid
-zinit load ptavares/zsh-direnv
+zinit light ptavares/zsh-direnv
 
 # # https://github.com/Tarrasch/zsh-bd
 zinit ice depth"1" wait"2" lucid
@@ -231,6 +232,9 @@ bindkey -a '^T' push-input
 # ctrl-u
 bindkey '^U' backward-kill-line
 bindkey -a '^U' backward-kill-line
+# ctrl-k
+bindkey '^K' kill-line
+bindkey -a '^K' kill-line
 # shift-tab
 bindkey '^[[Z' reverse-menu-complete
 bindkey -a '^[[Z' reverse-menu-complete
