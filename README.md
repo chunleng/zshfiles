@@ -1,4 +1,0 @@
-## Other Dependencies
-
-autojump
-nerdfont

@@ -22,68 +22,6 @@ if [ -d "${brew_prefix}/opt/ruby/bin" ]; then
 fi
 export PATH=${ADD_PATH}:${PATH}
 
-# Key Bindings
-# =============
-
-# ctrl-n
-bindkey '^N' history-beginning-search-forward
-bindkey -a '^N' history-beginning-search-forward
-# ctrl-p
-bindkey '^P' history-beginning-search-backward
-bindkey -a '^P' history-beginning-search-backward
-# ctrl-t
-bindkey '^T' push-input
-bindkey -a '^T' push-input
-# ctrl-u
-bindkey '^U' backward-kill-line
-bindkey -a '^U' backward-kill-line
-# ctrl-k
-bindkey '^K' kill-line
-bindkey -a '^K' kill-line
-# shift-tab
-bindkey '^[[Z' reverse-menu-complete
-bindkey -a '^[[Z' reverse-menu-complete
-
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export EDITOR="nvim"
-
-# Expand History Stored
-export HISTSIZE=50000
-export SAVEHIST=$HISTSIZE
-
-# setopt references: https://zsh.sourceforge.io/Doc/Release/Options.html
-# Don't store duplicate history and spaces
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-setopt hist_reduce_blanks
-setopt inc_append_history_time
-
-# Stop the annoying sound
-setopt nobeep
-
-export FZF_DEFAULT_COMMAND='fd --type f'
-export RIPGREP_CONFIG_PATH=${HOME}/.ripgreprc
-
-# Ctrl-w deletes alphanumeric and the following characters
-export WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
-alias vim="nvim";
-alias v="nvim";
-alias g="git"
-alias gg="lazygit"
-alias k="kubectl"
-alias be="bundle exec"
-alias r="rg"
-
-# Android Development
-if [ -d $HOME/Library/Android/sdk ]; then
-    export ANDROID_HOME=$HOME/Library/Android/sdk
-    export PATH=$PATH:$ANDROID_HOME/emulator
-    export PATH=$PATH:$ANDROID_HOME/tools
-    export PATH=$PATH:$ANDROID_HOME/tools/bin
-    export PATH=$PATH:$ANDROID_HOME/platform-tools
-fi
-
 # Zinit
 # =======
 source ${brew_prefix}/Cellar/zinit/*/zinit.zsh
@@ -153,8 +91,8 @@ eval $ice_completion
 zinit snippet ${HOME}/.rustup/toolchains/*/share/zsh/site-functions/_cargo
 
 # # Custom loading other command
-local s="source \"\${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc\""
-s="$s;source \"\${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc\""
+local s="source \"${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc\""
+s="$s;source \"${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc\""
 s="$s;source <(kubectl completion zsh)"
 s="$s;rustup completions zsh > ~/.zinit/completions/_rustup"
 zinit ice atload"${s}" wait"1" lucid
@@ -281,4 +219,67 @@ function run-parallel {
     exit_run_parallel
 }
 
+# Key Bindings
+# =============
+
+# ctrl-n
+bindkey '^N' history-beginning-search-forward
+bindkey -a '^N' history-beginning-search-forward
+# ctrl-p
+bindkey '^P' history-beginning-search-backward
+bindkey -a '^P' history-beginning-search-backward
+# ctrl-h
+bindkey '^T' push-input
+bindkey -a '^T' push-input
+# ctrl-u
+bindkey '^U' backward-kill-line
+bindkey -a '^U' backward-kill-line
+# ctrl-k
+bindkey '^K' kill-line
+bindkey -a '^K' kill-line
+# shift-tab
+bindkey '^[[Z' reverse-menu-complete
+bindkey -a '^[[Z' reverse-menu-complete
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export EDITOR="nvim"
+
+# Expand History Stored
+export HISTSIZE=50000
+export SAVEHIST=$HISTSIZE
+
+# setopt references: https://zsh.sourceforge.io/Doc/Release/Options.html
+# Don't store duplicate history and spaces
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt inc_append_history_time
+
+# Stop the annoying sound
+setopt nobeep
+
+export RIPGREP_CONFIG_PATH=${HOME}/.ripgreprc
+
+# Ctrl-w deletes alphanumeric and the following characters
+export WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
+alias vim="nvim";
+alias v="nvim";
+alias g="git"
+alias gg="lazygit"
+alias k="kubectl"
+alias be="bundle exec"
+alias r="rg"
+
+# Android Development
+if [ -d $HOME/Library/Android/sdk ]; then
+    export ANDROID_HOME=$HOME/Library/Android/sdk
+    export PATH=$PATH:$ANDROID_HOME/emulator
+    export PATH=$PATH:$ANDROID_HOME/tools
+    export PATH=$PATH:$ANDROID_HOME/tools/bin
+    export PATH=$PATH:$ANDROID_HOME/platform-tools
+fi
+
 test -f ~/.zshrc_local && source ~/.zshrc_local
+
+export FZF_DEFAULT_COMMAND='fd --type f'
