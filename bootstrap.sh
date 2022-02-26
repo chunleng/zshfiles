@@ -17,3 +17,6 @@ ln -sfn ${APP_PATH}/config/rgignore ${HOME}/.rgignore
 ln -sfn ${APP_PATH}/cron ${HOME}/.cron-script
 export > ${APP_PATH}/cron/envfile
 crontab < ${APP_PATH}/crontab
+
+# lazygit
+ln -sfn ${APP_PATH}/lazygit_config.yml "$(lazygit -cd)/config.yml"
