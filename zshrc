@@ -107,12 +107,30 @@ local ice_program='zinit ice depth"1" wait"2" lucid'
 # https://github.com/marzocchi/zsh-notify
 # To trick zsh-notify into thinking that it is a valid program
 export TERM_PROGRAM='Apple_Terminal'
-eval $ice_program
+# no wait since it's an important program
+# eval $ice_program
 zinit light marzocchi/zsh-notify
-    zstyle ':notify:*' command-complete-timeout 30
+    zstyle ':notify:*' command-complete-timeout 10
     zstyle ':notify:*' error-sound "Sosumi"
     zstyle ':notify:*' success-sound "Blow"
-    zstyle ':notify:*' blacklist-regex "nvim"
+    zstyle ':notify:*' blacklist-regex "nvim|lazygit"
+    zstyle ':notify:*' notifier notify_custom
+
+function notify_custom() {
+    local exec_command=$(cat /dev/stdin)
+    local exec_status=$1 # success, error
+    local time_elapsed=$2
+    local is_focused=$(osascript -e "if frontmost of application \"kitty\" then" -e "do shell script \"echo 1\"" -e "end if")
+    if [ "$is_focused" -eq "1" ]; then
+        local focus_kitty_id=$(kitty @ls |jq ".[].tabs[].windows[] | select(.is_focused == true) | .id")
+        local job_kitty_id=$KITTY_WINDOW_ID
+        if [ "$focus_kitty_id" -eq "$job_kitty_id" ]; then
+            return
+        fi
+    fi
+    local sound=$(if [ "$exec_status" = "success" ]; then echo "Blow"; else echo "Sosumi"; fi)
+    terminal-notifier -message "\$ $exec_command" -subtitle "Finish executing in $time_elapsed" -title $exec_status -sound $sound
+}
 
 # https://github.com/Aloxaf/fzf-tab
 local s="bindkey \"^I\" expand-or-complete"
