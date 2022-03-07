@@ -113,7 +113,7 @@ zinit light marzocchi/zsh-notify
     zstyle ':notify:*' command-complete-timeout 10
     zstyle ':notify:*' error-sound "Sosumi"
     zstyle ':notify:*' success-sound "Blow"
-    zstyle ':notify:*' blacklist-regex "nvim|lazygit"
+    zstyle ':notify:*' blacklist-regex "nvim|lazygit|aws-vault"
     zstyle ':notify:*' notifier notify_custom
 
 function notify_custom() {
