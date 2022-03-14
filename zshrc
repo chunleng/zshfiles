@@ -39,6 +39,7 @@ zinit snippet OMZP::vi-mode
 zinit ice depth"1" lucid
 zinit snippet OMZL::completion.zsh
 
+zinit snippet ~/.fzf.zsh
 
 # https://github.com/zsh-users/zsh-autosuggestions
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
