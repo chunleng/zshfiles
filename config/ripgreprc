@@ -1,3 +1,4 @@
 --max-columns=60
 --max-columns-preview
 --ignore-case
+--hidden
