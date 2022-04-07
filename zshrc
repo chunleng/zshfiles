@@ -281,7 +281,7 @@ setopt nobeep
 export RIPGREP_CONFIG_PATH=${HOME}/.ripgreprc
 
 # Ctrl-w deletes alphanumeric and the following characters
-export WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
+export WORDCHARS='*?_.[]~&;!#$%^(){}<>'
 alias vim="nvim";
 alias v="nvim";
 alias g="git"
