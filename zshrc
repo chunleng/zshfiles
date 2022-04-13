@@ -43,7 +43,6 @@ zinit snippet ~/.fzf.zsh
 
 # https://github.com/zsh-users/zsh-autosuggestions
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-zinit ice depth"1" lucid
 zinit light zsh-users/zsh-autosuggestions
     bindkey '^ ' autosuggest-execute
     bindkey -a '^ ' autosuggest-execute
