@@ -20,6 +20,9 @@ fi
 if [ -d "${brew_prefix}/opt/ruby/bin" ]; then
     ADD_PATH="${brew_prefix}/opt/ruby/bin:${ADD_PATH}"
 fi
+if [ -d "${HOME}/.gem/bin" ]; then
+    ADD_PATH="${HOME}/.gem/bin:${ADD_PATH}"
+fi
 export PATH=${ADD_PATH}:${PATH}
 
 # Zinit
