@@ -56,10 +56,11 @@ zinit snippet ${brew_prefix}/etc/profile.d/autojump.sh
 
 local s="eval \"\$(pyenv init --path)\""
 s="$s;eval \"\$(pyenv init -)\""
-s="$s;eval \"\$(jenv init -)\""
 s="$s;eval \"\$(nodenv init - zsh)\""
 s="$s;eval \"\$(rbenv init -)\""
 s="$s;eval \"\$(direnv hook zsh)\""
+s="$s;. ${brew_prefix}/opt/asdf/libexec/asdf.sh"
+s="$s;. ~/.asdf/plugins/java/set-java-home.zsh"
 zinit ice atload"${s}" wait lucid
 zinit light zdharma-continuum/null
 
@@ -291,6 +292,7 @@ alias gg="lazygit"
 alias k="kubectl"
 alias be="bundle exec"
 alias r="rg"
+alias a="asdf"
 
 # Android Development
 if [ -d $HOME/Library/Android/sdk ]; then
