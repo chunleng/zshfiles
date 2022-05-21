@@ -47,8 +47,8 @@
     # pyenv                 # python environment (https://github.com/pyenv/pyenv)
     package                 # name@version from package.json (https://docs.npmjs.com/files/package.json)
     node_version            # node.js version
-    rbenv                   # ruby version from rbenv (https://github.com/rbenv/rbenv)
-    jenv                    # java version from jenv (https://github.com/jenv/jenv)
+    # rbenv                 # ruby version from rbenv (https://github.com/rbenv/rbenv)
+    # jenv                  # java version from jenv (https://github.com/jenv/jenv)
     kubecontext             # current kubernetes context (https://kubernetes.io/)
     aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
     terraform               # terraform workspace (https://www.terraform.io)
@@ -626,8 +626,8 @@
   typeset -g POWERLEVEL9K_ASDF_SHOW_ON_UPGLOB=
 
   # Ruby version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_RUBY_FOREGROUND=168
-  # typeset -g POWERLEVEL9K_ASDF_RUBY_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_ASDF_RUBY_FOREGROUND=124
+  typeset -g POWERLEVEL9K_ASDF_RUBY_VISUAL_IDENTIFIER_EXPANSION=' '
   # typeset -g POWERLEVEL9K_ASDF_RUBY_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # Python version from asdf.

@@ -55,7 +55,6 @@ zinit ice wait lucid
 zinit snippet ${brew_prefix}/etc/profile.d/autojump.sh
 
 local s="eval \"\$(nodenv init - zsh)\""
-s="$s;eval \"\$(rbenv init -)\""
 s="$s;eval \"\$(direnv hook zsh)\""
 s="$s;. ${brew_prefix}/opt/asdf/libexec/asdf.sh"
 s="$s;. ~/.asdf/plugins/java/set-java-home.zsh"
