@@ -280,6 +280,7 @@ setopt inc_append_history_time
 setopt nobeep
 
 export RIPGREP_CONFIG_PATH=${HOME}/.ripgreprc
+export FZF_DEFAULT_COMMAND='fd --type f'
 
 # Ctrl-w deletes alphanumeric and the following characters
 export WORDCHARS='*?_.[]~&;!#$%^(){}<>'
@@ -302,5 +303,3 @@ if [ -d $HOME/Library/Android/sdk ]; then
 fi
 
 test -f ~/.zshrc_local && source ~/.zshrc_local
-
-export FZF_DEFAULT_COMMAND='fd --type f'
