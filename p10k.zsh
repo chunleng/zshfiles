@@ -45,8 +45,8 @@
     direnv                  # direnv status (https://direnv.net/)
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     # pyenv                 # python environment (https://github.com/pyenv/pyenv)
-    package                 # name@version from package.json (https://docs.npmjs.com/files/package.json)
-    node_version            # node.js version
+    # package               # name@version from package.json (https://docs.npmjs.com/files/package.json)
+    # node_version          # node.js version
     # rbenv                 # ruby version from rbenv (https://github.com/rbenv/rbenv)
     # jenv                  # java version from jenv (https://github.com/jenv/jenv)
     kubecontext             # current kubernetes context (https://kubernetes.io/)
@@ -642,7 +642,7 @@
 
   # Node.js version from asdf.
   typeset -g POWERLEVEL9K_ASDF_NODEJS_FOREGROUND=70
-  # typeset -g POWERLEVEL9K_ASDF_NODEJS_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_ASDF_NODEJS_VISUAL_IDENTIFIER_EXPANSION=' '
   # typeset -g POWERLEVEL9K_ASDF_NODEJS_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # Rust version from asdf.
