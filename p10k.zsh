@@ -41,9 +41,10 @@
     command_execution_time  # duration of the last command
     status                  # exit code of the last command
     background_jobs         # presence of background jobs
+    asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
     direnv                  # direnv status (https://direnv.net/)
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
-    pyenv                   # python environment (https://github.com/pyenv/pyenv)
+    # pyenv                 # python environment (https://github.com/pyenv/pyenv)
     package                 # name@version from package.json (https://docs.npmjs.com/files/package.json)
     node_version            # node.js version
     rbenv                   # ruby version from rbenv (https://github.com/rbenv/rbenv)
@@ -62,7 +63,6 @@
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
-    # asdf                  # asdf version manager (https://github.com/asdf-vm/asdf)
     # anaconda              # conda environment (https://conda.io/)
     # goenv                 # go environment (https://github.com/syndbg/goenv)
     # nvm                   # node.js version from nvm (https://github.com/nvm-sh/nvm)
@@ -631,7 +631,7 @@
   # typeset -g POWERLEVEL9K_ASDF_RUBY_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # Python version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_PYTHON_FOREGROUND=37
+  typeset -g POWERLEVEL9K_ASDF_PYTHON_FOREGROUND=26
   # typeset -g POWERLEVEL9K_ASDF_PYTHON_VISUAL_IDENTIFIER_EXPANSION='⭐'
   # typeset -g POWERLEVEL9K_ASDF_PYTHON_SHOW_ON_UPGLOB='*.foo|*.bar'
 

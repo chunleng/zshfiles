@@ -54,9 +54,7 @@ zinit light zsh-users/zsh-autosuggestions
 zinit ice wait lucid
 zinit snippet ${brew_prefix}/etc/profile.d/autojump.sh
 
-local s="eval \"\$(pyenv init --path)\""
-s="$s;eval \"\$(pyenv init -)\""
-s="$s;eval \"\$(nodenv init - zsh)\""
+local s="eval \"\$(nodenv init - zsh)\""
 s="$s;eval \"\$(rbenv init -)\""
 s="$s;eval \"\$(direnv hook zsh)\""
 s="$s;. ${brew_prefix}/opt/asdf/libexec/asdf.sh"
