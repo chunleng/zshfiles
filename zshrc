@@ -212,20 +212,6 @@ function sedreplace {
     fd ${target} --type=f --exec sed -i "${sed_string}"
 }
 
-# TODO make a plugin out of this
-# TODO unable to clear multiple lines
-# function clean-history-by-buffer {
-#   local regex=$BUFFER
-#   regex=$(sed "s/\([\\/[!.*]\)/\\\\\1/g" <<< $BUFFER)
-#   sed "/^${regex}\$/d" $HISTFILE > ${HISTFILE}.tmp
-#   mv ${HISTFILE}.tmp ${HISTFILE}
-#   BUFFER=
-#   zle history-beginning-search-backward
-# }
-# zle -N clean-history-by-buffer
-# bindkey "^H" clean-history-by-buffer
-# bindkey -a "^H" clean-history-by-buffer
-
 function run-parallel {
     for command in "$@"; do
         eval "$command &"
