@@ -1,3 +1,4 @@
 0 */3 * * *  ${HOME}/.cron-script/run.sh pip-update
-20 */3 * * *  ${HOME}/.cron-script/run.sh npm-update
-40 */3 * * *  ${HOME}/.cron-script/run.sh homebrew-update
+15 */3 * * *  ${HOME}/.cron-script/run.sh npm-update
+30 */3 * * *  ${HOME}/.cron-script/run.sh homebrew-update
+45 */3 * * *  ${HOME}/.cron-script/run.sh asdf-update
