@@ -283,6 +283,8 @@ alias k="kubectl"
 alias be="bundle exec"
 alias r="rg"
 alias a="asdf"
+alias c="colima"
+alias d="docker"
 
 # Android Development
 if [ -d $HOME/Library/Android/sdk ]; then

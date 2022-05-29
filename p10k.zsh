@@ -50,6 +50,7 @@
     # rbenv                 # ruby version from rbenv (https://github.com/rbenv/rbenv)
     # jenv                  # java version from jenv (https://github.com/jenv/jenv)
     kubecontext             # current kubernetes context (https://kubernetes.io/)
+    dockercontext           # current docker context (see prompt_dockercontext)
     aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
     terraform               # terraform workspace (https://www.terraform.io)
     # =========================[ Line #3 ]=========================
@@ -114,6 +115,16 @@
     # example               # example user-defined segment (see prompt_example function below)
   )
 
+  function prompt_dockercontext() {
+    if [[ -n ${DOCKER_HOST} ]]; then
+      p10k segment -f 33 -i ' ' -t "\$DOCKER_HOST: ${DOCKER_HOST}"
+    else
+      local context=$(docker context inspect -f '{{.Name}}')
+      if [[ $context != "default" ]]; then
+        p10k segment -f 33 -i ' ' -t "${context}"
+      fi
+    fi
+  }
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
   typeset -g POWERLEVEL9K_MODE=nerdfont-complete
   # When set to `moderate`, some icons will have an extra space after them. This is meant to avoid
@@ -1557,9 +1568,9 @@
   # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS. It displays an icon and orange text greeting the user.
   #
   # Type `p10k help segment` for documentation and a more sophisticated example.
-  function prompt_example() {
-    p10k segment -f 208 -i '⭐' -t 'hello, %n'
-  }
+  # function prompt_example() {
+  #   p10k segment -f 208 -i '⭐' -t 'hello, %n'
+  # }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
   # is to generate the prompt segment for display in instant prompt. See
