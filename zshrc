@@ -283,7 +283,7 @@ alias k="kubectl"
 alias be="bundle exec"
 alias r="rg"
 alias a="asdf"
-alias b="bpytop"
+alias b="btop"
 alias c="colima"
 alias d="docker"
 
