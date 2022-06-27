@@ -51,7 +51,7 @@ zinit light zsh-users/zsh-autosuggestions
     bindkey -a '^ ' autosuggest-execute
 
 # autojump setup
-zinit ice wait lucid
+zinit ice lucid
 zinit snippet ${brew_prefix}/etc/profile.d/autojump.sh
 
 local s="eval \"\$(direnv hook zsh)\""
@@ -273,6 +273,30 @@ setopt nobeep
 export RIPGREP_CONFIG_PATH=${HOME}/.ripgreprc
 export FZF_DEFAULT_COMMAND='fd --type f'
 
+# Performs 2 things
+# 1. cd to the last directory after exiting ranger
+# 2. rerun ranger if it exited with a command (for in-ranger execution that requires to execute on current directiory)
+ranger_cd() {
+    local cmd="$1"
+    local pid=$$
+    local choosedir=${HOME}/.local/share/ranger/out_${pid}
+    local ranger_command="ranger --choosedir='${choosedir}'"
+
+    if [ -n "$cmd" ]; then
+        ranger_command="${ranger_command} --cmd='${cmd}'"
+    fi
+
+    eval "$ranger_command;"
+    cd "$(cat ${choosedir})"
+    rm ${choosedir}
+
+    if [ -f ${HOME}/.local/share/ranger/cmd ]; then
+        cmd=$(cat ${HOME}/.local/share/ranger/cmd)
+        rm ${HOME}/.local/share/ranger/cmd
+        ranger_cd "$cmd"
+    fi
+}
+
 # Ctrl-w deletes alphanumeric and the following characters
 export WORDCHARS='*?_.[]~&;!#$%^(){}<>'
 alias vim="nvim";
@@ -281,7 +305,7 @@ alias g="git"
 alias gg="lazygit"
 alias k="kubectl"
 alias be="bundle exec"
-alias r="rg"
+alias r="ranger_cd"
 alias a="asdf"
 alias b="btop"
 alias c="colima"
