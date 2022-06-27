@@ -19,5 +19,8 @@ ln -sfn ${APP_PATH}/cron ${HOME}/.cron-script
 export > ${APP_PATH}/cron/envfile
 crontab < ${APP_PATH}/crontab
 
+# custom autoload functions
+ln -sfn ${APP_PATH}/functions ${HOME}/.zsh_functions
+
 # lazygit
 ln -sfn ${APP_PATH}/lazygit_config.yml "$(lazygit -cd)/config.yml"

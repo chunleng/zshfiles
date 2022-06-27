@@ -1,0 +1,6 @@
+local target=$1
+if [ -d "$target" ]; then
+    tree -C --noreport --dirsfirst -L 1 $target;
+else if [ -f "$target" ]
+    bat -n --color=always $target;
+fi

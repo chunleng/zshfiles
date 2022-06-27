@@ -25,6 +25,9 @@ if [ -d "${HOME}/.gem/bin" ]; then
 fi
 export PATH=${ADD_PATH}:${PATH}
 
+# personal FPATH
+export FPATH="$FPATH:${HOME}/.zsh_functions"
+
 # Zinit
 # =======
 source ${brew_prefix}/Cellar/zinit/*/zinit.zsh
@@ -147,9 +150,9 @@ s="$s;bindkey \"^_\" fzf-tab-complete"
 s="$s;bindkey -a \"^_\" fzf-tab-complete"
 eval "$ice_program atload\"\$s\""
 zinit light Aloxaf/fzf-tab
-    zstyle ':fzf-tab:complete:ls*:*' fzf-preview 'bat -n --color=auto $realpath'
-    zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'bat -n --color=auto $realpath'
-    zstyle ':fzf-tab:*' fzf-bindings 'bspace:backward-delete-char/eof' 'tab:toggle+down' 'ctrl-/:toggle-preview'
+    zstyle ':fzf-tab:*' fzf-bindings 'bspace:backward-delete-char/eof'
+    zstyle ':fzf-tab:*' fzf-pad '10'
+    zstyle ':fzf-tab:*' fzf-flags '--no-preview'
 
 # https://github.com/Tarrasch/zsh-bd
 eval $ice_program
@@ -272,6 +275,12 @@ setopt nobeep
 
 export RIPGREP_CONFIG_PATH=${HOME}/.ripgreprc
 export FZF_DEFAULT_COMMAND='fd --type f'
+local fzf_do='--height 40% --layout=reverse --border --select-1 --multi --info=inline'
+fzf_do="$fzf_do --color=fg+:15,pointer:15,info:4,prompt:4,hl:4,hl+:4,bg+:94,gutter:0,marker:15,border:23"
+fzf_do="$fzf_do --bind 'ctrl-/:toggle-preview,tab:toggle+down,shift-tab:toggle+up'"
+fzf_do="$fzf_do --ansi --preview 'autoload -U fzf_preview; fzf_preview {}'"
+export FZF_DEFAULT_OPTS="$fzf_do"
+export FZF_CTRL_R_OPTS="--no-preview"
 
 # Performs 2 things
 # 1. cd to the last directory after exiting ranger
