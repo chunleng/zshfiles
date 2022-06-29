@@ -254,6 +254,8 @@ bindkey -a '^K' kill-line
 # shift-tab
 bindkey '^[[Z' reverse-menu-complete
 bindkey -a '^[[Z' reverse-menu-complete
+# vim normal mode: redo
+bindkey -a '^R' redo
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
