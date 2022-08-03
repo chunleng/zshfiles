@@ -331,4 +331,7 @@ if [ -d $HOME/Library/Android/sdk ]; then
     export PATH=$PATH:$ANDROID_HOME/platform-tools
 fi
 
+# No timeout for LastPass
+export LPASS_AGENT_TIMEOUT=0
+
 test -f ~/.zshrc_local && source ~/.zshrc_local
