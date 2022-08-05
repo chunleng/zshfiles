@@ -104,7 +104,6 @@ zinit snippet ${HOME}/.rustup/toolchains/*/share/zsh/site-functions/_cargo
 local s="source \"${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc\""
 s="$s;source \"${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc\""
 s="$s;source <(kubectl completion zsh)"
-s="$s;rustup completions zsh > ~/.zinit/completions/_rustup"
 zinit ice atload"${s}" wait"1" lucid
 zinit light zdharma-continuum/null
 
