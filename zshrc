@@ -256,6 +256,9 @@ bindkey -a '^[[Z' reverse-menu-complete
 # vim normal mode: redo
 bindkey -a '^R' redo
 
+bindkey '^B' backward-char
+bindkey '^F' forward-char
+
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR="nvim"
