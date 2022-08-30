@@ -221,17 +221,6 @@ function sedreplace {
     fd ${target} --type=f --exec sed -i "${sed_string}"
 }
 
-function run-parallel {
-    for command in "$@"; do
-        eval "$command &"
-    done
-    function exit_run_parallel {
-        trap "exit_run_parallel" INT
-        fg
-    }
-    exit_run_parallel
-}
-
 # Key Bindings
 # =============
 
