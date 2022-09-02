@@ -77,13 +77,6 @@ local ice_completion='zinit ice depth"1" atload"zicompinit" as"completion" wait"
 eval $ice_completion
 zinit light gradle/gradle-completion
 
-# https://docs.docker.com/desktop/mac/#zsh
-eval "$ice_completion mv\"docker.zsh-completion -> _docker\""
-zinit snippet /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion
-eval "$ice_completion mv\"docker-compose.zsh-completion -> _docker-compose\""
-zinit snippet /Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion
-
-
 # https://github.com/zsh-users/zsh-completions/blob/master/src/_rails
 eval $ice_completion
 zinit snippet https://github.com/zsh-users/zsh-completions/blob/master/src/_rails
@@ -97,8 +90,10 @@ eval $ice_completion
 zinit snippet https://github.com/zsh-users/zsh-completions/blob/master/src/_mvn
 
 # rust cargo
-eval $ice_completion
-zinit snippet ${HOME}/.rustup/toolchains/*/share/zsh/site-functions/_cargo
+if [ -d ${HOME}/.asdf/installs/rust ]; then
+    eval $ice_completion
+    zinit snippet ${HOME}/.asdf/installs/rust/*/toolchains/*/share/zsh/site-functions/_cargo
+fi
 
 # Custom loading other command
 local s="source \"${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc\""

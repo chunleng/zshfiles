@@ -9,7 +9,7 @@ grep -q $CURRENT_ZSH /etc/shells || echo $CURRENT_ZSH | sudo tee -a /etc/shells 
 [ $SHELL = `which zsh` ] || chsh -s $CURRENT_ZSH
 
 ln -sfn ${APP_PATH}/zshrc ${HOME}/.zshrc
-ln -sfn ${APP_PATH}/bundle-config ${HOME}/.bundle/config
+mkdir -p ${HOME}/.bundle && ln -sfn ${APP_PATH}/bundle-config ${HOME}/.bundle/config
 ln -sfn ${APP_PATH}/p10k.zsh ${HOME}/.p10k.zsh
 ln -sfn ${APP_PATH}/config/ripgreprc ${HOME}/.ripgreprc
 ln -sfn ${APP_PATH}/config/rgignore ${HOME}/.rgignore
