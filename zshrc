@@ -92,7 +92,8 @@ zinit snippet https://github.com/zsh-users/zsh-completions/blob/master/src/_mvn
 # rust cargo
 if [ -d ${HOME}/.asdf/installs/rust ]; then
     eval $ice_completion
-    zinit snippet ${HOME}/.asdf/installs/rust/*/toolchains/*/share/zsh/site-functions/_cargo
+    zinit snippet $(ls -r ${HOME}/.asdf/installs/rust/*/toolchains/*/share/zsh/site-functions/_cargo |head -n1
+)
 fi
 
 # Custom loading other command
