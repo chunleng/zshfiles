@@ -23,4 +23,4 @@ crontab < ${APP_PATH}/crontab
 ln -sfn ${APP_PATH}/functions ${HOME}/.zsh_functions
 
 # lazygit
-ln -sfn ${APP_PATH}/lazygit_config.yml "$(lazygit -cd)/config.yml"
+ln -sfn ${APP_PATH}/lazygit_config.yml "${HOME}/.lg_config.yml"

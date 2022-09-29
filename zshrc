@@ -321,4 +321,10 @@ fi
 # No timeout for LastPass
 export LPASS_AGENT_TIMEOUT=0
 
+# Lazygit config and local config
+export LG_CONFIG_FILE="${HOME}/.lg_config.yml"
+if [ -f ${HOME}/.lg_config_local.yml ]; then
+    export LG_CONFIG_FILE="${HOME}/.lg_config.yml,${HOME}/.lg_config_local.yml"
+fi
+
 test -f ~/.zshrc_local && source ~/.zshrc_local
