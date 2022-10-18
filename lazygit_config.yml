@@ -17,6 +17,8 @@
 # base0F: "#a3685a"
 
 gui:
+  showIcons: true
+  showBottomLine: false
   scrollHeight: 10
   mouseEvents: false
   mainPanelSplitMode: horizontal
