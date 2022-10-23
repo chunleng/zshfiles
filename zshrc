@@ -295,6 +295,30 @@ ranger_cd() {
     fi
 }
 
+# Performs 2 things
+# 1. cd to the last directory after exiting ranger
+# 2. rerun ranger if it exited with a command (for in-ranger execution that requires to execute on current directiory)
+lf_cd() {
+    local cmd="$1"
+    local pid=$$
+    local choosepath=${HOME}/.config/lf/out_${pid}
+    local lf_cmd="lf -last-dir-path='${choosepath}'"
+
+    if [ -n "$cmd" ]; then
+        lf_cmd="${lf_cmd} -command='${cmd}'"
+    fi
+
+    eval "$lf_cmd;"
+    cd "$(cat ${choosepath})"
+    rm ${choosepath}
+
+    if [ -f ${HOME}/.config/lf/cmd ]; then
+        cmd=$(cat ${HOME}/.config/lf/cmd)
+        rm ${HOME}/.config/lf/cmd
+        lf_cd "$cmd"
+    fi
+}
+
 # Ctrl-w deletes alphanumeric and the following characters
 export WORDCHARS='*?_.[]~&;!#$%^(){}<>'
 alias vim="nvim";
@@ -304,6 +328,7 @@ alias gg="lazygit"
 alias k="kubectl"
 alias be="bundle exec"
 alias r="ranger_cd"
+alias l="lf_cd"
 alias a="asdf"
 alias b="btop"
 alias c="colima"
