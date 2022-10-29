@@ -28,6 +28,12 @@ export PATH=${ADD_PATH}:${PATH}
 # personal FPATH
 export FPATH="$FPATH:${HOME}/.zsh_functions"
 
+# Env Related
+# ============
+eval "$(direnv hook zsh)"
+. ~/.asdf/plugins/java/set-java-home.zsh
+. ${brew_prefix}/opt/asdf/libexec/asdf.sh
+
 # Zinit
 # =======
 source ${brew_prefix}/Cellar/zinit/*/zinit.zsh
@@ -56,12 +62,6 @@ zinit light zsh-users/zsh-autosuggestions
 # autojump setup
 zinit ice lucid
 zinit snippet ${brew_prefix}/etc/profile.d/autojump.sh
-
-local s="eval \"\$(direnv hook zsh)\""
-s="$s;. ${brew_prefix}/opt/asdf/libexec/asdf.sh"
-s="$s;. ~/.asdf/plugins/java/set-java-home.zsh"
-zinit ice atload"${s}" wait lucid
-zinit light zdharma-continuum/null
 
 # https://github.com/zdharma-continuum/fast-syntax-highlighting
 zinit ice depth"1" wait"1" lucid
