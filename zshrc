@@ -271,54 +271,6 @@ fzf_do="$fzf_do --ansi --preview 'autoload -U fzf_preview; fzf_preview {}'"
 export FZF_DEFAULT_OPTS="$fzf_do"
 export FZF_CTRL_R_OPTS="--no-preview"
 
-# Performs 2 things
-# 1. cd to the last directory after exiting ranger
-# 2. rerun ranger if it exited with a command (for in-ranger execution that requires to execute on current directiory)
-ranger_cd() {
-    local cmd="$1"
-    local pid=$$
-    local choosedir=${HOME}/.local/share/ranger/out_${pid}
-    local ranger_command="ranger --choosedir='${choosedir}'"
-
-    if [ -n "$cmd" ]; then
-        ranger_command="${ranger_command} --cmd='${cmd}'"
-    fi
-
-    eval "$ranger_command;"
-    cd "$(cat ${choosedir})"
-    rm ${choosedir}
-
-    if [ -f ${HOME}/.local/share/ranger/cmd ]; then
-        cmd=$(cat ${HOME}/.local/share/ranger/cmd)
-        rm ${HOME}/.local/share/ranger/cmd
-        ranger_cd "$cmd"
-    fi
-}
-
-# Performs 2 things
-# 1. cd to the last directory after exiting ranger
-# 2. rerun ranger if it exited with a command (for in-ranger execution that requires to execute on current directiory)
-lf_cd() {
-    local cmd="$1"
-    local pid=$$
-    local choosepath=${HOME}/.config/lf/out_${pid}
-    local lf_cmd="lf -last-dir-path='${choosepath}'"
-
-    if [ -n "$cmd" ]; then
-        lf_cmd="${lf_cmd} -command='${cmd}'"
-    fi
-
-    eval "$lf_cmd;"
-    cd "$(cat ${choosepath})"
-    rm ${choosepath}
-
-    if [ -f ${HOME}/.config/lf/cmd ]; then
-        cmd=$(cat ${HOME}/.config/lf/cmd)
-        rm ${HOME}/.config/lf/cmd
-        lf_cd "$cmd"
-    fi
-}
-
 # Ctrl-w deletes alphanumeric and the following characters
 export WORDCHARS='*?_.[]~&;!#$%^(){}<>'
 alias vim="nvim";
@@ -327,8 +279,6 @@ alias g="git"
 alias gg="lazygit"
 alias k="kubectl"
 alias be="bundle exec"
-alias r="ranger_cd"
-alias l="lf_cd"
 alias a="asdf"
 alias b="btop"
 alias c="colima"
