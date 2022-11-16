@@ -127,7 +127,7 @@ function notify_custom() {
     local time_elapsed=$2
     local is_focused=$(osascript -e "if frontmost of application \"kitty\" then" -e "do shell script \"echo 1\"" -e "end if")
     if [ "$is_focused" -eq "1" ]; then
-        local focus_kitty_id=$(kitty @ls |jq ".[].tabs[].windows[] | select(.is_focused == true) | .id")
+        local focus_kitty_id=$(kitty @ls | jq ".[].tabs[] | select(.is_focused == true) | .windows[] | select(.is_focused == true) | .id")
         local job_kitty_id=$KITTY_WINDOW_ID
         if [ "$focus_kitty_id" -eq "$job_kitty_id" ]; then
             return
