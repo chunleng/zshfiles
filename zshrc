@@ -265,7 +265,7 @@ setopt nobeep
 export RIPGREP_CONFIG_PATH=${HOME}/.ripgreprc
 export FZF_DEFAULT_COMMAND='fd --type f'
 local fzf_do='--height 40% --layout=reverse --border --select-1 --multi --info=inline'
-fzf_do="$fzf_do --color=fg+:15,pointer:15,info:4,prompt:4,hl:4,hl+:4,bg+:94,gutter:0,marker:15,border:23"
+fzf_do="$fzf_do --color=fg:7,fg+:0,pointer:0,info:4,prompt:4,hl:4,hl+:4,bg+:2,gutter:0,marker:2,border:4"
 fzf_do="$fzf_do --bind 'ctrl-/:toggle-preview,tab:toggle+down,shift-tab:toggle+up'"
 fzf_do="$fzf_do --ansi --preview 'autoload -U fzf_preview; fzf_preview {}'"
 export FZF_DEFAULT_OPTS="$fzf_do"

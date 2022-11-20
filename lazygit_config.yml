@@ -1,20 +1,22 @@
-# https://github.com/chriskempson/base16-tomorrow-scheme/blob/master/tomorrow-night.yaml
-# base00: "#1d1f21"
-# base01: "#282a2e"
-# base02: "#373b41"
-# base03: "#969896"
-# base04: "#b4b7b4"
-# base05: "#c5c8c6"
-# base06: "#e0e0e0"
-# base07: "#ffffff"
-# base08: "#cc6666"
-# base09: "#de935f"
-# base0A: "#f0c674"
-# base0B: "#b5bd68"
-# base0C: "#8abeb7"
-# base0D: "#81a2be"
-# base0E: "#b294bb"
-# base0F: "#a3685a"
+# normal
+# color0 #202020
+# color1 #dd241d
+# color2 #98a71a
+# color3 #c76921
+# color4 #456588
+# color5 #d16286
+# color6 #58ad8a
+# color7 #989898
+
+# # bright
+# color8 #737373
+# color9 #ff4934
+# color10 #b8db36
+# color11 #ea7d2f
+# color12 #8385a8
+# color13 #f3869b
+# color14 #7ec09c
+# color15 #ebebeb
 
 gui:
   showIcons: true
@@ -22,21 +24,34 @@ gui:
   scrollHeight: 10
   mouseEvents: false
   mainPanelSplitMode: horizontal
+  commandLogSize: 8
   theme:
     activeBorderColor:
-      - "#ffffff"
+      - "#98a71a"
       - bold
     inactiveBorderColor:
-      - "#969896"
-    optionsTextColor:
-      - "#969896"
+      - "#989898"
     selectedLineBgColor:
       - default
       - bold
     selectedRangeBgColor:
       - reverse
     cherryPickedCommitBgColor:
-      - reverse
-      - bold
+      - "#7ec09c"
     cherryPickedCommitFgColor:
-      - cyan
+      - "#202020"
+      - bold
+    unstageChangesColor:
+      - "#c76921"
+  branchColors:
+    'feature': "#456588"
+    'issue': "#456588"
+    'master': "#b8db36"
+  authorColors:
+    'Lim Chun Leng': "#456588"
+    'ChunLeng Lim': "#456588"
+    '*': "#989898"
+keybinding:
+  universal:
+    remove: 'x'
+    optionMenu: '?'

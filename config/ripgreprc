@@ -3,3 +3,7 @@
 --ignore-case
 --hidden
 --follow
+--colors=path:fg:4
+--colors=line:fg:7
+--colors=column:fg:7
+--colors=match:fg:1
