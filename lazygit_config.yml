@@ -1,22 +1,22 @@
 # normal
 # color0 #202020
-# color1 #dd241d
-# color2 #98a71a
-# color3 #c76921
-# color4 #456588
-# color5 #d16286
-# color6 #58ad8a
-# color7 #989898
+# color1 #ff141d
+# color2 #6d9c10
+# color3 #bfbf31
+# color4 #3a5aa3
+# color5 #d182d6
+# color6 #28869c
+# color7 #737373
 
-# # bright
-# color8 #737373
-# color9 #ff4934
-# color10 #b8db36
-# color11 #ea7d2f
-# color12 #8385a8
-# color13 #f3869b
-# color14 #7ec09c
-# color15 #ebebeb
+# bright
+# color8 #939393
+# color9 #ff7964
+# color10 #68c336
+# color11 #cccc7f
+# color12 #6f95d8
+# color13 #f3b6fb
+# color14 #4ea9cc
+# color15 #d0d0d0
 
 gui:
   showIcons: true
@@ -27,30 +27,30 @@ gui:
   commandLogSize: 8
   theme:
     activeBorderColor:
-      - "#98a71a"
+      - "#6d9c10"
       - bold
     inactiveBorderColor:
-      - "#989898"
+      - "#737373"
     selectedLineBgColor:
       - default
       - bold
     selectedRangeBgColor:
       - reverse
     cherryPickedCommitBgColor:
-      - "#7ec09c"
+      - "#28869c"
     cherryPickedCommitFgColor:
       - "#202020"
       - bold
     unstageChangesColor:
-      - "#c76921"
+      - "#ff7964"
   branchColors:
-    'feature': "#456588"
-    'issue': "#456588"
-    'master': "#b8db36"
+    'feature': "#3a5aa3"
+    'issue': "#3a5aa3"
+    'master': "#bfbf31"
   authorColors:
-    'Lim Chun Leng': "#456588"
-    'ChunLeng Lim': "#456588"
-    '*': "#989898"
+    'Lim Chun Leng': "#3a5aa3"
+    'ChunLeng Lim': "#3a5aa3"
+    '*': "#737373"
 keybinding:
   universal:
     remove: 'x'
