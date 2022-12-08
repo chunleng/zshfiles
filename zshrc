@@ -100,6 +100,7 @@ fi
 local s="source \"${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc\""
 s="$s;source \"${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc\""
 s="$s;source <(kubectl completion zsh)"
+s="$s;fast-theme base16 > /dev/null 2&>1" # fast-syntax-highlighting theme (Needed for first time only)
 zinit ice atload"${s}" wait"1" lucid
 zinit light zdharma-continuum/null
 
@@ -258,6 +259,9 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt hist_reduce_blanks
 setopt inc_append_history_time
+
+# Other option
+setopt interactivecomments
 
 # Stop the annoying sound
 setopt nobeep
