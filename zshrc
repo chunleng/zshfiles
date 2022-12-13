@@ -218,6 +218,13 @@ function sedreplace {
     fd ${target} --type=f --exec sed -i "${sed_string}"
 }
 
+# Function to check the context of the current docker build
+# If there are any other parameters from the build, just pass in as argument
+# e.g. docker_context --target
+function docker_context() {
+    echo -e 'FROM scratch\nCOPY . /' | docker build --quiet -f- -o- . | tar -t
+}
+
 # Key Bindings
 # =============
 
