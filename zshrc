@@ -252,6 +252,13 @@ bindkey -a '^R' redo
 bindkey '^B' backward-char
 bindkey '^F' forward-char
 
+function copy-line {
+    echo -n $BUFFER | pbcopy
+}
+zle -N copy-line
+bindkey '^Y' copy-line
+bindkey -a '^Y' copy-line
+
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR="nvim"
