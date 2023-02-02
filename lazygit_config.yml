@@ -21,6 +21,7 @@
 gui:
   showIcons: true
   showBottomLine: false
+  skiRewordInEditorWarning: true
   scrollHeight: 10
   mouseEvents: false
   mainPanelSplitMode: horizontal
