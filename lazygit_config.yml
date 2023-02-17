@@ -45,9 +45,18 @@ gui:
     unstageChangesColor:
       - "#ff7964"
   branchColors:
-    'feature': "#3a5aa3"
+    'feat': "#6d9c10"
+    'fix': "#ff141d"
+    'perf': "#3a5aa3"
+    'refactor': "#3a5aa3"
+    'chore': "#3a5aa3"
+    'docs': "#28869c"
+    'ci': "#28869c"
+    'test': "#28869c"
+    # Non-commit conventional
     'issue': "#3a5aa3"
-    'master': "#bfbf31"
+    'master': "#d0d0d0"
+    'main': "#d0d0d0"
   authorColors:
     'Lim Chun Leng': "#3a5aa3"
     'ChunLeng Lim': "#3a5aa3"
