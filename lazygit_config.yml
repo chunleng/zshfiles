@@ -21,7 +21,7 @@
 gui:
   showIcons: true
   showBottomLine: false
-  skiRewordInEditorWarning: true
+  skipRewordInEditorWarning: true
   scrollHeight: 10
   mouseEvents: false
   mainPanelSplitMode: horizontal
