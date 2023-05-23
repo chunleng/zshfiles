@@ -259,6 +259,7 @@ zle -N copy-line
 bindkey '^Y' copy-line
 bindkey -a '^Y' copy-line
 
+export SHELL=zsh
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR="nvim"
