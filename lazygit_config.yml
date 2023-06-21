@@ -70,4 +70,8 @@ keybinding:
     # key. assign random to the unused keys so that they won't be accidentally activated
     squashDown: '<c-v>'
     markCommitAsFixup: '<c-2>'
-
+customCommands:
+  - key: 'u'
+    description: 'Unshallow (fetch all branches and log history) for this remote'
+    context: 'remotes'
+    command: "git remote set-branches {{.SelectedRemote.Name}} '*'; git fetch --unshallow"
