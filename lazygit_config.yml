@@ -79,3 +79,7 @@ customCommands:
     description: 'prune branches that no longer exists in the remote'
     context: 'remotes'
     command: "git remote prune {{.SelectedRemote.Name}}"
+  - key: '<space>'
+    description: 'checkout (ignore other worktree)'
+    context: 'localBranches'
+    command: "git checkout --ignore-other-worktrees \"{{.SelectedLocalBranch.Name}}\""
