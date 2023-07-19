@@ -66,9 +66,7 @@ keybinding:
     remove: 'x'
     optionMenu: '?'
   commits:
-    # squashDown and markCommitAsFixup are often mispressed because they are undercase of the commonly used 'S' and 'F'
-    # key. assign random to the unused keys so that they won't be accidentally activated
-    squashDown: '<c-v>'
+    squashDown: 'J' # Move vim like
     markCommitAsFixup: '<c-2>'
 customCommands:
   - key: 'u'
