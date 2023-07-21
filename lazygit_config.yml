@@ -67,7 +67,7 @@ keybinding:
     optionMenu: '?'
   commits:
     squashDown: 'J' # Move vim like
-    markCommitAsFixup: '<c-2>'
+    markCommitAsFixup: '<c-v>'
 customCommands:
   - key: 'u'
     description: 'unshallow (fetch all branches and log history) for this remote'
