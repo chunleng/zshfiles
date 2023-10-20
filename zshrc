@@ -315,6 +315,9 @@ fi
 # No timeout for LastPass
 export LPASS_AGENT_TIMEOUT=0
 
+# ZK Notebook location
+export ZK_NOTEBOOK_DIR="My Drive/notes"
+
 # Lazygit config and local config
 export LG_CONFIG_FILE="${HOME}/.lg_config.yml"
 if [ -f ${HOME}/.lg_config_local.yml ]; then
