@@ -2,6 +2,7 @@
 
 set -eu
 
+asdf plugin-update --all
 asdf install neovim nightly && \
   rm -rf ~/.asdf/installs/neovim/nightly.bak && \
   mv ~/.asdf/installs/neovim/nightly{,.bak} && \
