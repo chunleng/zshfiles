@@ -301,6 +301,7 @@ alias be="bundle exec"
 alias a="asdf"
 alias b="btop"
 alias c="colima"
+alias cg="cargo"
 alias d="docker"
 
 # Android Development
