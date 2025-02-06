@@ -14,6 +14,10 @@ fi
 if [ -d "${brew_prefix}/opt/gnu-sed/libexec/gnubin" ]; then
     ADD_PATH="${brew_prefix}/opt/gnu-sed/libexec/gnubin:${ADD_PATH}"
 fi
+if [ -d "${HOME}/.asdf/shims" ]; then
+    export ASDF_DATA_DIR="${HOME}/.asdf"
+    ADD_PATH="${ASDF_DATA_DIR}/shims:${ADD_PATH}"
+fi
 export PATH=${ADD_PATH}:${PATH}
 
 # personal FPATH
@@ -23,7 +27,6 @@ export FPATH="$FPATH:${HOME}/.zsh_functions"
 # ============
 eval "$(direnv hook zsh)"
 . ~/.asdf/plugins/java/set-java-home.zsh
-. ${brew_prefix}/opt/asdf/libexec/asdf.sh
 
 # Zinit
 # =======
