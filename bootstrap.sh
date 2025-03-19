@@ -13,6 +13,11 @@ mkdir -p ${HOME}/.bundle && ln -sfn ${APP_PATH}/bundle-config ${HOME}/.bundle/co
 ln -sfn ${APP_PATH}/p10k.zsh ${HOME}/.p10k.zsh
 ln -sfn ${APP_PATH}/config/ripgreprc ${HOME}/.ripgreprc
 ln -sfn ${APP_PATH}/config/rgignore ${HOME}/.rgignore
+mkdir -p ${HOME}/.config/spotify-player && \
+    ln -sfn ${APP_PATH}/config/spotify/app.toml ${HOME}/.config/spotify-player/app.toml && \
+    ln -sfn ${APP_PATH}/config/spotify/keymap.toml ${HOME}/.config/spotify-player/keymap.toml && \
+    ln -sfn ${APP_PATH}/config/spotify/theme.toml ${HOME}/.config/spotify-player/theme.toml
+
 
 # cron
 ln -sfn ${APP_PATH}/cron ${HOME}/.cron-script

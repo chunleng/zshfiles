@@ -1,0 +1,37 @@
+[[keymaps]]
+command = "Mute"
+key_sequence = "m"
+[[keymaps]]
+command = "Shuffle"
+key_sequence = "t s"
+[[keymaps]]
+command = "Repeat"
+key_sequence = "t r"
+[[keymaps]]
+command = "PlayRandom"
+key_sequence = "S"
+[[keymaps]]
+command = "PreviousPage"
+key_sequence = "C-o"
+[[keymaps]]
+command = "SeekForward"
+key_sequence = "l"
+[[keymaps]]
+command = "SeekBackward"
+key_sequence = "h"
+[[keymaps]]
+command = "LibraryPage"
+key_sequence = "g h"
+[[keymaps]]
+command = "LikedTrackPage"
+key_sequence = "g l"
+[[keymaps]]
+command = "SearchPage"
+key_sequence = "g /"
+
+[[actions]]
+action = "ToggleLiked"
+key_sequence = "*"
+[[actions]]
+action = "Follow"
+key_sequence = "f"

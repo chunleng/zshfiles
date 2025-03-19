@@ -1,0 +1,38 @@
+[[themes]]
+name = "custom"
+[themes.palette]
+background = "#202020"
+foreground = "#d0d0d0"
+black = "#202020"
+red = "#ff141d"
+green = "#6d9c10"
+yellow = "#bfbf31"
+blue = "#3a5aa3"
+magenta = "#d182d6"
+cyan = "#28869c"
+white = "#737373"
+bright_black = "#939393"
+bright_red = "#ff7964"
+bright_green = "#68c336"
+bright_yellow = "#cccc7f"
+bright_blue = "#6f95d8"
+bright_magenta = "#f3b6fb"
+bright_cyan = "#4ea9cc"
+bright_white = "#d0d0d0"
+[themes.component_style]
+block_title = { fg = "White", modifiers = ["Italic"]  }
+border = { fg = "BrightBlack", modifiers = ["Dim"] }
+playback_status = { fg = "Yellow", modifiers = ["Dim"] }
+playback_track = { fg = "BrightYellow", modifiers = ["Bold"] }
+playback_artists = { fg = "BrightBlack" }
+playback_album = { fg = "BrightBlack" }
+playback_metadata = { fg = "BrightBlack", modifiers = ["Dim"] }
+playback_progress_bar = { fg = "BrightGreen", bg = "Black", modifiers = ["Bold"] }
+playback_progress_bar_unfilled = { fg = "BrightBlack", modifiers = ["Dim"] }
+current_playing = { fg = "Cyan", modifiers = ["Bold"] }
+page_desc = { fg = "White", modifiers = ["Bold"] }
+playlist_desc = { fg = "White" }
+table_header = { fg = "BrightCyan" }
+secondary_row = {}
+like = { fg = "BrightRed" }
+lyrics_played = { modifiers = ["Dim"] }
