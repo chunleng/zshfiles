@@ -2,4 +2,4 @@
 
 set -eu
 
-asdf plugin-update --all
+asdf plugin update --all
