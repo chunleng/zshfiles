@@ -20,7 +20,6 @@ enable_media_control = false
 enable_streaming = "Always"
 enable_notify = false
 enable_cover_image_cache = true
-default_device = " "
 notify_streaming_only = false
 seek_duration_secs = 10
 
@@ -37,7 +36,6 @@ playlist_percent = 40
 album_percent = 40
 
 [device]
-name = " "
 device_type = "speaker"
 volume = 70
 bitrate = 320
