@@ -300,7 +300,10 @@ alias d="docker"
 
 # Android Development
 if [ -d $HOME/Library/Android/sdk ]; then
-    export ANDROID_HOME=$HOME/Library/Android/sdk
+    export ANDROID_HOME=$HOME/Library/Android/sdk/
+    if [ -d ${ANDROID_HOME}ndk ]; then
+        export ANDROID_NDK_HOME=${ANDROID_HOME}ndk/$(ls --color=never -r ${ANDROID_HOME}ndk|head -n1)/
+    fi
     export PATH=$PATH:$ANDROID_HOME/emulator
     export PATH=$PATH:$ANDROID_HOME/tools
     export PATH=$PATH:$ANDROID_HOME/tools/bin
