@@ -62,6 +62,8 @@ gui:
     'Lim Chun Leng': "#3a5aa3"
     'ChunLeng Lim': "#3a5aa3"
     '*': "#737373"
+git:
+  autoFetch: false
 keybinding:
   universal:
     remove: 'x'
