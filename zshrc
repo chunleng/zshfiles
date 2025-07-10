@@ -93,7 +93,7 @@ fi
 # Custom loading other command
 local s="source \"${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc\""
 s="$s;source \"${brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc\""
-s="$s;source <(kubectl completion zsh)"
+s="$s;source <(${HOME}/.asdf/installs/kubectl/1.27.4/bin/kubectl completion zsh)"
 s="$s;fast-theme base16 > /dev/null 2&>1" # fast-syntax-highlighting theme (Needed for first time only)
 zinit ice atload"${s}" wait"1" lucid
 zinit light zdharma-continuum/null
