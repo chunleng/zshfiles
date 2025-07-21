@@ -219,6 +219,13 @@ function docker_context() {
     echo -e 'FROM scratch\nCOPY . /' | docker build --quiet -f- -o- . | tar -t
 }
 
+function docker_safe_purge {
+    for image in $(docker images --format '{{.Repository}}' | grep -v '<none>' | sort | uniq); do
+      echo "Processing image: $image"
+      images=$(docker images "$image" --format '{{.ID}}' | uniq)
+      echo "$images" | tail -n +4 | xargs -r docker rmi
+    done
+}
 # Key Bindings
 # =============
 
