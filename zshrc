@@ -69,21 +69,9 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 
 local ice_completion='zinit ice depth"1" atload"zicompinit" as"completion" wait"1" lucid'
 
-# https://github.com/gradle/gradle-completion
-eval $ice_completion
-zinit light gradle/gradle-completion
-
-# https://github.com/zsh-users/zsh-completions/blob/master/src/_rails
-eval $ice_completion
-zinit snippet https://github.com/zsh-users/zsh-completions/blob/master/src/_rails
-
 # https://github.com/zsh-users/zsh-completions/blob/master/src/_bundle
 eval $ice_completion
 zinit snippet https://github.com/zsh-users/zsh-completions/blob/master/src/_bundle
-
-# https://github.com/zsh-users/zsh-completions/blob/master/src/_mvn
-eval $ice_completion
-zinit snippet https://github.com/zsh-users/zsh-completions/blob/master/src/_mvn
 
 # rust cargo
 if [ -d ${HOME}/.asdf/installs/rust ]; then
