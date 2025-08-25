@@ -1,4 +1,6 @@
 brew_prefix=/usr/local
+kubectl_path=${HOME}/.asdf/installs/kubectl/1.27.4/bin
+
 if [ $(uname -m) = 'arm64' ]; then
     brew_prefix=/opt/homebrew
     export PATH=${brew_prefix}/bin:${PATH}
@@ -91,7 +93,7 @@ if [ -d ${HOME}/.asdf/installs/rust ]; then
 fi
 
 # Custom loading other command
-local s="$s;source <(${HOME}/.asdf/installs/kubectl/1.27.4/bin/kubectl completion zsh)"
+local s="$s;source <(${kubectl_path}/kubectl completion zsh)"
 s="$s;fast-theme base16 > /dev/null 2&>1" # fast-syntax-highlighting theme (Needed for first time only)
 zinit ice atload"${s}" wait"1" lucid
 zinit light zdharma-continuum/null
