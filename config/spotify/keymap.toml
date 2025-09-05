@@ -14,10 +14,10 @@ key_sequence = "S"
 command = "PreviousPage"
 key_sequence = "C-o"
 [[keymaps]]
-command = "SeekForward"
+command = { "SeekForward" = { duration = 10 } }
 key_sequence = "l"
 [[keymaps]]
-command = "SeekBackward"
+command = { "SeekBackward" = { duration = 10 } }
 key_sequence = "h"
 [[keymaps]]
 command = "LibraryPage"
