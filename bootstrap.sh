@@ -29,3 +29,6 @@ ln -sfn ${APP_PATH}/functions ${HOME}/.zsh_functions
 
 # lazygit
 ln -sfn ${APP_PATH}/lazygit_config.yml "${HOME}/.lg_config.yml"
+
+# claude
+ln -sfn ${APP_PATH}/claude/CLAUDE.md ${HOME}/.claude/CLAUDE.md
