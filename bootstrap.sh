@@ -32,3 +32,5 @@ ln -sfn ${APP_PATH}/lazygit_config.yml "${HOME}/.lg_config.yml"
 
 # claude
 ln -sfn ${APP_PATH}/claude/CLAUDE.md ${HOME}/.claude/CLAUDE.md
+ln -sfn ${APP_PATH}/claude/settings.json ${HOME}/.claude/settings.json
+ln -sfn ${APP_PATH}/claude/agents ${HOME}/.claude/agents
