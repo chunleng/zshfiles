@@ -19,3 +19,9 @@ Ask user permission before:
 When editing files, follow these rules:
 
 - Files must end with a newline character
+
+## DOs and DON'Ts
+
+### Coding
+
+- Don't add comments unless they explain why, not what
