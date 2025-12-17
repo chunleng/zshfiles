@@ -20,6 +20,11 @@ When editing files, follow these rules:
 
 - Files must end with a newline character
 
+## Preferred Tools
+
+- Listing file: `fd --color=never . "<directory>"`
+- Grep related: `rg --color=never "<search text>" "directory"`
+
 ## DOs and DON'Ts
 
 ### Coding

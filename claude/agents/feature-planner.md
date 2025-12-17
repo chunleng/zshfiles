@@ -7,11 +7,6 @@ model: opus
 Use deep logical thinking to produce a feature development plan. Investigate the
 current working directory or go online to learn more about the situation.
 
-## Preferred Tools
-
-- Listing file: `fd --color=never . "<directory>"`
-- Grep related: `rg --color=never "<search text>" "directory"`
-
 ## Flow
 
 1. Elicit feature request - ask user clarifying questions if needed
