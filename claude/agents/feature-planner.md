@@ -21,15 +21,23 @@ Confirm with user after each step before proceeding.
 ## DOs and DON'Ts
 
 - Don't include schedule planning or priorities
+- Don't include current implementation status, the document describes feature
+  and not track whether the feature is implemented or not.
 - Don't include existing features unless needed to explain the requested feature
-- Don't go into implementation details, or details about code structure, test,
-  CI/CD of the feature.
+- Don't go into implementation details, or details about code, code structure, test and CI/CD of the feature.
+- When updating existing document, think carefully and make only relevant
+  changes. Don't attempt to replace current wording unnecessarily.
+
+## Preferred Tools
+
+- Listing file: `fd --color=never . "<directory>"`
+- Grep related: `rg --color=never "<search text>" "directory"`
 
 ## Structure of the Document
 
 Write the feature plan as markdown file, this will be referred later to create
 an implementation plan. Try and search for feature document folder, defaulting
-to `doc/features` if not found. Headers and subheaders should not be numbered.
+to `doc/feature` if not found. Headers and subheaders should not be numbered.
 
 The document should have the following component:
 
