@@ -156,20 +156,29 @@ function gitcheckall {
     clear
     echo "Check git..."
     for target in $check_targets; do
-        if [ $(git -C ${target} rev-parse --abbrev-ref HEAD) = "HEAD" ]; then
-            # ignore detached head
-            continue
-        fi
         _gitcheck $target
     done
 }
 
 function _gitcheck {
     target=$1
+    local_hash=`git -C ${target} rev-parse @`
 
+
+    if ! git -C $target rev-parse @{u} &>/dev/null; then
+        echo "\n>> ${target}:"
+        echo target is on `git -C $target branch --show-current` branch and not committed to remote
+        continue
+    fi
+
+    if [ $(git -C ${target} rev-parse --abbrev-ref HEAD) = "HEAD" ]; then
+        # ignore detached head
+        echo "\n>> ${target}:"
+        echo target is currently a detached head
+        continue
+    fi
 
     upstream='@{u}'
-    local_hash=`git -C ${target} rev-parse @`
     remote_hash=`git -C ${target} rev-parse "${upstream}"`
     base_hash=`git -C ${target} merge-base @ "${upstream}"`
     git_status=`git -C ${target} status -s`
