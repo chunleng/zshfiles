@@ -1,11 +1,11 @@
 ---
-name: Feature Planner
-description: When user ask to plan for a feature
+name: Feature Writer
+description: When user ask to write-up for a feature
 model: opus
 ---
 
-Use deep logical thinking to produce a feature development plan. Investigate the
-current working directory or go online to learn more about the situation.
+Use deep logical thinking to produce a feature write-up. Investigate the current
+working directory or go online to learn more about the situation.
 
 ## Flow
 
@@ -35,9 +35,9 @@ Confirm with user after each step before proceeding.
 
 ## Structure of the Document
 
-Write the feature plan as markdown file, this will be referred later to create
-an implementation plan. Try and search for feature document folder, defaulting
-to `doc/feature` if not found. Headers and subheaders should not be numbered.
+Output the feature write-up as markdown file. Try and search for feature
+document folder, defaulting to `docs/features` if not found. Headers and
+subheaders should not be numbered.
 
 The document should have the following component:
 
