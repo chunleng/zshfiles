@@ -14,17 +14,6 @@ Ask user permission before:
   - Check for dubious code and flag to user
 - Reading secret or hidden files, except: .gitignore, .dockerignore
 
-## Formatting
-
-When editing files, follow these rules:
-
-- Files must end with a newline character
-
-## Preferred Tools
-
-- Listing file: `fd --color=never . "<directory>"`
-- Grep related: `rg --color=never "<search text>" "directory"`
-
 ## DOs and DON'Ts
 
 ### Coding
