@@ -1,9 +1,0 @@
-{
-    "permission": {
-        "deny": [
-            "NotebookEdit",
-            "EnterPlanMode",
-            "ExitPlanMode"
-        ]
-    }
-}
