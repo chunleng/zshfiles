@@ -295,12 +295,12 @@ alias v="nvim";
 alias g="git"
 alias gg="lazygit"
 alias k="kubectl"
-alias be="bundle exec"
 alias a="asdf"
 alias b="btop"
-alias c="colima"
-alias cg="cargo"
+alias c="cargo"
 alias d="docker"
+alias o="orbctl"
+alias ossh=$'${kubectl_path}/kubectl run node-shell --rm -it --image=alpine --overrides=\'{"spec":{"hostPID":true,"hostNetwork":true,"nodeName":"orbstack","containers":[{"name":"node-shell","image":"alpine","stdin":true,"tty":true,"securityContext":{"privileged":true},"volumeMounts":[{"mountPath":"/host","name":"host-root"}]}],"volumes":[{"name":"host-root","hostPath":{"path":"/"}}]}}\' -- sh'
 
 # Android Development
 if [ -d ${brew_prefix}/share/android-commandlinetools ]; then
@@ -312,9 +312,6 @@ fi
 
 # No timeout for LastPass
 export LPASS_AGENT_TIMEOUT=0
-
-# ZK Notebook location
-export ZK_NOTEBOOK_DIR="My Drive/notes"
 
 # Lazygit config and local config
 export LG_CONFIG_FILE="${HOME}/.lg_config.yml"
