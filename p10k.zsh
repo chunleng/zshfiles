@@ -117,14 +117,10 @@
 
   function prompt_dockercontext() {
     if [[ -n ${DOCKER_HOST} ]]; then
-      if [[ ${DOCKER_HOST} != "$(minikube -p docker docker-env|grep -o 'tcp://[0-9.]*:[0-9]*')" ]]; then
         p10k segment -f 33 -i ' ' -t "\$DOCKER_HOST: ${DOCKER_HOST}"
-      else
-        p10k segment -f 33 -i ' '
-      fi
     else
       local context=$(docker context inspect -f '{{.Name}}')
-      if [[ $context != "default" ]]; then
+      if [[ $context != "orbstack" ]]; then
         p10k segment -f 33 -i ' ' -t "${context}"
       fi
     fi
