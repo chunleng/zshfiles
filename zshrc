@@ -299,8 +299,26 @@ alias a="asdf"
 alias b="btop"
 alias c="cargo"
 alias d="docker"
-alias o="orbctl"
+alias m="minikube"
 alias ossh=$'${kubectl_path}/kubectl run node-shell --rm -it --image=alpine --overrides=\'{"spec":{"hostPID":true,"hostNetwork":true,"nodeName":"orbstack","containers":[{"name":"node-shell","image":"alpine","stdin":true,"tty":true,"securityContext":{"privileged":true},"volumeMounts":[{"mountPath":"/host","name":"host-root"}]}],"volumes":[{"name":"host-root","hostPath":{"path":"/"}}]}}\' -- sh'
+
+function import_docker_env {
+    eval $(minikube -p docker docker-env)
+}
+
+function docker_start {
+    minikube -p docker start --no-kubernetes --container-runtime=docker
+    import_docker_env
+}
+
+function docker_stop {
+    minikube -p docker stop
+    unset $DOCKER_HOST
+    unset $DOCKER_TLS_VERIFY
+    unset $DOCKER_CERT_PATH
+}
+
+import_docker_env
 
 # Android Development
 if [ -d ${brew_prefix}/share/android-commandlinetools ]; then
