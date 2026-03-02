@@ -301,7 +301,6 @@ alias c="cargo"
 alias d="docker"
 alias m="minikube"
 alias o="orbctl"
-alias ossh=$'${kubectl_path}/kubectl run node-shell --rm -it --image=alpine --overrides=\'{"spec":{"hostPID":true,"hostNetwork":true,"nodeName":"orbstack","containers":[{"name":"node-shell","image":"alpine","stdin":true,"tty":true,"securityContext":{"privileged":true},"volumeMounts":[{"mountPath":"/host","name":"host-root"}]}],"volumes":[{"name":"host-root","hostPath":{"path":"/"}}]}}\' -- sh'
 
 
 # Android Development
