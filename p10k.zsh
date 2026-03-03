@@ -718,7 +718,7 @@
 
   # Terraform version from asdf.
   typeset -g POWERLEVEL9K_ASDF_TERRAFORM_FOREGROUND=38
-  typeset -g POWERLEVEL9K_ASDF_TERRAFORM_VISUAL_IDENTIFIER_EXPANSION=''
+  typeset -g POWERLEVEL9K_ASDF_TERRAFORM_VISUAL_IDENTIFIER_EXPANSION=' '
   # typeset -g POWERLEVEL9K_ASDF_TERRAFORM_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   ##########[ nordvpn: nordvpn connection status, linux only (https://nordvpn.com/) ]###########
@@ -1296,13 +1296,13 @@
       # '*test*'  TEST    # to match your needs. Customize them as needed.
       '*'         OTHER)
   typeset -g POWERLEVEL9K_TERRAFORM_OTHER_FOREGROUND=38
-  typeset -g POWERLEVEL9K_TERRAFORM_OTHER_VISUAL_IDENTIFIER_EXPANSION='行'
+  typeset -g POWERLEVEL9K_TERRAFORM_OTHER_VISUAL_IDENTIFIER_EXPANSION=' '
 
   #############[ terraform_version: terraform version (https://www.terraform.io) ]##############
   # Terraform version color.
   typeset -g POWERLEVEL9K_TERRAFORM_VERSION_FOREGROUND=38
   # Custom icon.
-  typeset -g POWERLEVEL9K_TERRAFORM_VERSION_VISUAL_IDENTIFIER_EXPANSION='行'
+  typeset -g POWERLEVEL9K_TERRAFORM_VERSION_VISUAL_IDENTIFIER_EXPANSION=' '
 
   #[ aws: aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html) ]#
   # Show aws only when the command you are typing invokes one of these tools.
