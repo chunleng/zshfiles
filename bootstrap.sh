@@ -25,3 +25,7 @@ ln -sfn ${APP_PATH}/functions ${HOME}/.zsh_functions
 
 # lazygit
 ln -sfn ${APP_PATH}/lazygit_config.yml "${HOME}/.lg_config.yml"
+
+# swiftbar
+defaults write com.ameba.SwiftBar PluginDirectory -string "${APP_PATH}/swiftbar"
+chmod +x ${APP_PATH}/swiftbar/*.sh
