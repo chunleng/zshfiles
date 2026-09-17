@@ -75,9 +75,9 @@ else
   if [ "$transitioned" = "1" ]; then
     write_state "$phase" "$start" 0 0
     if [ "$phase" = "work" ]; then
-      terminal-notifier -title "Pomodoro" -message "Break over, back to work" -group "pomodoro-$now" -sound Glass
+      terminal-notifier -title "Pomodoro" -message "Break over, back to work" -group "pomodoro" -sound Glass
     else
-      terminal-notifier -title "Pomodoro" -message "Work done, take a break" -group "pomodoro-$now" -sound Glass
+      terminal-notifier -title "Pomodoro" -message "Work done, take a break" -group "pomodoro" -sound Glass
     fi
   fi
 fi
