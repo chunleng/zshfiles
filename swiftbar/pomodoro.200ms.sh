@@ -95,7 +95,7 @@ else
   icon="󰓛 "
 fi
 
-printf '%s%02d:%02d | font="Hack Nerd Font"' "$icon" "$min" "$sec"
+printf "%s%02d:%02d | font=\"Hack Nerd Font\"\n" "$icon" "$min" "$sec"
 echo "---"
 if [ "$paused" = "1" ]; then
   echo "Resume | shell=$0 param1=pause terminal=false refresh=true shortcut=CTRL+OPTION+SHIFT+L"
