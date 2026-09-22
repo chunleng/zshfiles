@@ -43,7 +43,7 @@ fi
 
 if [ ! -f "$STATE_FILE" ]; then
   # inactive: exit immediately, keep the 200ms poll near-zero cost
-  echo '󰔛| font="Hack Nerd Font"'
+  echo '󰔛| font="Hack Nerd Font" size=16 valign=-2'
   echo "---"
   echo "Start | shell=$0 param1=toggle terminal=false refresh=true shortcut=CTRL+OPTION+SHIFT+K"
   exit 0
